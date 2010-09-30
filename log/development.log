@@ -33457,3 +33457,803 @@ Processing PagesController#index (for 127.0.0.1 at 2010-09-30 18:58:27) [GET]
 Rendering template within layouts/pages
 Rendering pages/index
 Completed in 70ms (View: 52, DB: 1) | 200 OK [http://0.0.0.0/pages]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-09-30 19:26:00) [GET]
+  [4;36;1mUser Load (0.1ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" IS NULL) LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/login
+Filter chain halted as [:authorize] rendered_or_redirected.
+Completed in 83ms (DB: 0) | 302 Found [http://0.0.0.0/users]
+
+
+Processing AdminController#login (for 127.0.0.1 at 2010-09-30 19:26:00) [GET]
+Rendering template within layouts/admin
+Rendering admin/login
+Completed in 160ms (View: 99, DB: 0) | 200 OK [http://0.0.0.0/login]
+
+
+Processing AdminController#login (for 127.0.0.1 at 2010-09-30 19:26:05) [POST]
+  Parameters: {"commit"=>"Login", "authenticity_token"=>"2+k4RqePtWM83lgdR0SM2yovuVmcS5/C2vIlkB1duHQ=", "username"=>"admin", "password"=>"admin"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."username" = 'admin') LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/admin
+Completed in 13ms (DB: 1) | 302 Found [http://0.0.0.0/login]
+
+
+Processing AdminController#index (for 127.0.0.1 at 2010-09-30 19:26:05) [GET]
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/admin
+Rendering admin/index
+Completed in 19ms (View: 7, DB: 1) | 200 OK [http://0.0.0.0/admin]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-09-30 19:26:07) [GET]
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.9ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."user_id" = 1) [0m
+Rendering template within layouts/pages
+Rendering pages/index
+Completed in 164ms (View: 96, DB: 2) | 200 OK [http://0.0.0.0/pages]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:26:09) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (1.8ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 153ms (View: 59, DB: 3) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:26:15) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 86ms (View: 63, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:26:23) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+
+ActionView::TemplateError (/home/ggtesta/rails2.3/TCC/PrankDev/app/views/transform/index.html.effigy:84: syntax error, unexpected $end, expecting kEND) on line #84 of app/views/transform/index.html.effigy:
+81:   end
+82:   
+83: end
+
+    effigy (0.4.0) lib/effigy/rails/template_handler.rb:58:in `load_view_class'
+    effigy (0.4.0) lib/effigy/rails/template_handler.rb:24:in `compile'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (46.2ms)
+Rendered rescues/_request_and_response (1.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:26:29) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (1.1ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 110ms (View: 87, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:29:48) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (1.1ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+ActionView::TemplateError (undefined method `STRUCTURAL_TAGS' for #<Class:0xb6f9a090>) on line #50 of app/views/transform/index.html.effigy:
+47:         attributes.concat(k + "=\"" + v + "\"")
+48:       }
+49:       
+50:       puts Rule.STRUCTURAL_TAGS
+51:       new_content = ''
+52:     
+53:       if (!value.nil?) then
+
+    app/views/transform/index.html.effigy:50:in `clone'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:239:in `each'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `upto'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `each'
+    app/views/transform/index.html.effigy:43:in `clone'
+    app/views/transform/index.html.effigy:23:in `transform'
+    app/views/transform/index.html.effigy:22:in `each'
+    app/views/transform/index.html.effigy:22:in `transform'
+    app/views/transform/index.html.effigy:17:in `each'
+    app/views/transform/index.html.effigy:17:in `transform'
+    effigy (0.4.0) lib/effigy/view.rb:292:in `yield_transform_and_output'
+    effigy (0.4.0) lib/effigy/view.rb:90:in `render_html_fragment'
+    app/views/transform/index.html.effigy:12:in `_run_effigy_app47views47transform47index46html46effigy'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (49.9ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:29:59) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 44ms (View: 22, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:31:04) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (1.1ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+
+ActionView::TemplateError (undefined method `belongs?' for ["div", "ul", "li", "p"]:Array) on line #50 of app/views/transform/index.html.effigy:
+47:         attributes.concat(k + "=\"" + v + "\"")
+48:       }
+49:       
+50:       a = Rule::STRUCTURAL_TAGS.belongs?("asdf")
+51:       
+52:       new_content = ''
+53:     
+
+    app/views/transform/index.html.effigy:50:in `clone'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:239:in `each'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `upto'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `each'
+    app/views/transform/index.html.effigy:43:in `clone'
+    app/views/transform/index.html.effigy:23:in `transform'
+    app/views/transform/index.html.effigy:22:in `each'
+    app/views/transform/index.html.effigy:22:in `transform'
+    app/views/transform/index.html.effigy:17:in `each'
+    app/views/transform/index.html.effigy:17:in `transform'
+    effigy (0.4.0) lib/effigy/view.rb:292:in `yield_transform_and_output'
+    effigy (0.4.0) lib/effigy/view.rb:90:in `render_html_fragment'
+    app/views/transform/index.html.effigy:12:in `_run_effigy_app47views47transform47index46html46effigy'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (47.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:31:13) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (1.0ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+
+ActionView::TemplateError (undefined method `belong?' for ["div", "ul", "li", "p"]:Array) on line #50 of app/views/transform/index.html.effigy:
+47:         attributes.concat(k + "=\"" + v + "\"")
+48:       }
+49:       
+50:       a = Rule::STRUCTURAL_TAGS.belong?("asdf")
+51:       
+52:       new_content = ''
+53:     
+
+    app/views/transform/index.html.effigy:50:in `clone'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:239:in `each'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `upto'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `each'
+    app/views/transform/index.html.effigy:43:in `clone'
+    app/views/transform/index.html.effigy:23:in `transform'
+    app/views/transform/index.html.effigy:22:in `each'
+    app/views/transform/index.html.effigy:22:in `transform'
+    app/views/transform/index.html.effigy:17:in `each'
+    app/views/transform/index.html.effigy:17:in `transform'
+    effigy (0.4.0) lib/effigy/view.rb:292:in `yield_transform_and_output'
+    effigy (0.4.0) lib/effigy/view.rb:90:in `render_html_fragment'
+    app/views/transform/index.html.effigy:12:in `_run_effigy_app47views47transform47index46html46effigy'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (47.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:32:18) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (1.1ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 105ms (View: 24, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:32:40) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 97ms (View: 74, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:37:05) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 48ms (View: 23, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:37:07) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 42ms (View: 16, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:37:08) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 87ms (View: 65, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:37:11) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (1.0ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 48ms (View: 23, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:48:12) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (1.1ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+
+ActionView::TemplateError (/home/ggtesta/rails2.3/TCC/PrankDev/app/views/transform/index.html.effigy:68: syntax error, unexpected kELSIF, expecting kEND
+      elsif Rule::FORMATTING_TAGS.include?(node.name) then
+           ^
+/home/ggtesta/rails2.3/TCC/PrankDev/app/views/transform/index.html.effigy:68: syntax error, unexpected kTHEN, expecting kEND
+/home/ggtesta/rails2.3/TCC/PrankDev/app/views/transform/index.html.effigy:92: syntax error, unexpected $end, expecting kEND) on line #68 of app/views/transform/index.html.effigy:
+65: ##        new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
+66:       
+67:       end
+68:       elsif Rule::FORMATTING_TAGS.include?(node.name) then
+69:       
+70:       end
+71:       
+
+    effigy (0.4.0) lib/effigy/rails/template_handler.rb:58:in `load_view_class'
+    effigy (0.4.0) lib/effigy/rails/template_handler.rb:24:in `compile'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (46.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:48:33) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 103ms (View: 80, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:49:09) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (1.0ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 45ms (View: 21, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:49:39) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (1.0ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 48ms (View: 23, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:49:45) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+
+ActionView::TemplateError (Could not reparent node) on line #54 of app/views/transform/index.html.effigy:
+51:       if Rule::STRUCTURAL_TAGS.include?(node.name) then
+52: ##        new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
+53: ##        if (!value.nil?) then
+54:          node.after(node)
+55:          
+56: ##          new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
+57:           
+
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node.rb:279:in `add_next_sibling_node'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node.rb:279:in `add_next_sibling'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node.rb:303:in `after'
+    app/views/transform/index.html.effigy:54:in `clone'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:239:in `each'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `upto'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `each'
+    app/views/transform/index.html.effigy:43:in `clone'
+    app/views/transform/index.html.effigy:23:in `transform'
+    app/views/transform/index.html.effigy:22:in `each'
+    app/views/transform/index.html.effigy:22:in `transform'
+    app/views/transform/index.html.effigy:17:in `each'
+    app/views/transform/index.html.effigy:17:in `transform'
+    effigy (0.4.0) lib/effigy/view.rb:292:in `yield_transform_and_output'
+    effigy (0.4.0) lib/effigy/view.rb:90:in `render_html_fragment'
+    app/views/transform/index.html.effigy:12:in `_run_effigy_app47views47transform47index46html46effigy'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (51.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:49:54) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 107ms (View: 83, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:50:22) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (1.0ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 48ms (View: 23, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 19:50:47) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 96ms (View: 73, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:01:35) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+
+ActionView::TemplateError (wrong number of arguments (0 for 2)) on line #62 of app/views/transform/index.html.effigy:
+59:         end
+60:         
+61:         # insere texto dado no novo duplicado
+62:         if (!text.nil?) then
+63:           new_node.content=(text)
+64:         end
+65:            
+
+    app/views/transform/index.html.effigy:62:in `text'
+    app/views/transform/index.html.effigy:62:in `clone'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:239:in `each'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `upto'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `each'
+    app/views/transform/index.html.effigy:43:in `clone'
+    app/views/transform/index.html.effigy:23:in `transform'
+    app/views/transform/index.html.effigy:22:in `each'
+    app/views/transform/index.html.effigy:22:in `transform'
+    app/views/transform/index.html.effigy:17:in `each'
+    app/views/transform/index.html.effigy:17:in `transform'
+    effigy (0.4.0) lib/effigy/view.rb:292:in `yield_transform_and_output'
+    effigy (0.4.0) lib/effigy/view.rb:90:in `render_html_fragment'
+    app/views/transform/index.html.effigy:12:in `_run_effigy_app47views47transform47index46html46effigy'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (51.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:02:11) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 43ms (View: 21, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:02:21) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (1.1ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+
+ActionView::TemplateError (wrong number of arguments (0 for 2)) on line #62 of app/views/transform/index.html.effigy:
+59:         end
+60:         
+61:         # insere texto dado no novo duplicado
+62:         if (!text.nil?) then
+63: #          new_node.content=(text)
+64:         end
+65:            
+
+    app/views/transform/index.html.effigy:62:in `text'
+    app/views/transform/index.html.effigy:62:in `clone'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:239:in `each'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `upto'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `each'
+    app/views/transform/index.html.effigy:43:in `clone'
+    app/views/transform/index.html.effigy:23:in `transform'
+    app/views/transform/index.html.effigy:22:in `each'
+    app/views/transform/index.html.effigy:22:in `transform'
+    app/views/transform/index.html.effigy:17:in `each'
+    app/views/transform/index.html.effigy:17:in `transform'
+    effigy (0.4.0) lib/effigy/view.rb:292:in `yield_transform_and_output'
+    effigy (0.4.0) lib/effigy/view.rb:90:in `render_html_fragment'
+    app/views/transform/index.html.effigy:12:in `_run_effigy_app47views47transform47index46html46effigy'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (48.1ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:03:45) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (1.0ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 49ms (View: 24, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:04:33) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 95ms (View: 72, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:05:04) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 44ms (View: 21, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:06:52) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.3ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (1.0ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 48ms (View: 23, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:13:06) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+
+ActionView::TemplateError (wrong number of arguments (1 for 2)) on line #80 of app/views/transform/index.html.effigy:
+77:     if node.children.empty? then
+78:       node.content=(new_content)
+79:     else
+80:       insert_content(node.child)
+81:     end
+82:     node
+83:     
+
+    app/views/transform/index.html.effigy:80:in `insert_content'
+    app/views/transform/index.html.effigy:80:in `insert_content'
+    app/views/transform/index.html.effigy:63:in `clone'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:239:in `each'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `upto'
+    nokogiri (1.4.3.1) lib/nokogiri/xml/node_set.rb:238:in `each'
+    app/views/transform/index.html.effigy:43:in `clone'
+    app/views/transform/index.html.effigy:23:in `transform'
+    app/views/transform/index.html.effigy:22:in `each'
+    app/views/transform/index.html.effigy:22:in `transform'
+    app/views/transform/index.html.effigy:17:in `each'
+    app/views/transform/index.html.effigy:17:in `transform'
+    effigy (0.4.0) lib/effigy/view.rb:292:in `yield_transform_and_output'
+    effigy (0.4.0) lib/effigy/view.rb:90:in `render_html_fragment'
+    app/views/transform/index.html.effigy:12:in `_run_effigy_app47views47transform47index46html46effigy'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (49.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:13:28) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 98ms (View: 76, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-09-30 20:13:51) [GET]
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" ORDER BY username[0m
+Rendering template within layouts/users
+Rendering users/index
+Completed in 54ms (View: 41, DB: 1) | 200 OK [http://0.0.0.0/users]
+
+
+Processing PagesController#index (for 127.0.0.1 at 2010-09-30 20:13:56) [GET]
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.7ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."user_id" = 1) [0m
+Rendering template within layouts/pages
+Rendering pages/index
+Completed in 66ms (View: 48, DB: 1) | 200 OK [http://0.0.0.0/pages]
+
+
+Processing RulesController#index (for 127.0.0.1 at 2010-09-30 20:13:57) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = '17') [0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+Rendering template within layouts/rules
+Rendering rules/index
+Completed in 105ms (View: 83, DB: 2) | 200 OK [http://0.0.0.0/rules?page_id=17]
+
+
+Processing RulesController#edit (for 127.0.0.1 at 2010-09-30 20:14:23) [GET]
+  Parameters: {"page_id"=>"17", "id"=>"90"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mRule Load (0.2ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."id" = 90) [0m
+Rendering template within layouts/rules
+Rendering rules/edit
+Completed in 48ms (View: 31, DB: 1) | 200 OK [http://0.0.0.0/rules/90/edit?page_id=17]
+
+
+Processing RulesController#index (for 127.0.0.1 at 2010-09-30 20:14:32) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = '17') [0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+Rendering template within layouts/rules
+Rendering rules/index
+Completed in 78ms (View: 55, DB: 2) | 200 OK [http://0.0.0.0/rules?page_id=17]
+
+
+Processing RulesController#edit (for 127.0.0.1 at 2010-09-30 20:14:36) [GET]
+  Parameters: {"page_id"=>"17", "id"=>"92"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mRule Load (0.2ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."id" = 92) [0m
+Rendering template within layouts/rules
+Rendering rules/edit
+Completed in 23ms (View: 7, DB: 1) | 200 OK [http://0.0.0.0/rules/92/edit?page_id=17]
+
+
+Processing RulesController#update (for 127.0.0.1 at 2010-09-30 20:15:05) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"2+k4RqePtWM83lgdR0SM2yovuVmcS5/C2vIlkB1duHQ=", "id"=>"92", "rule"=>{"option"=>"clone", "text"=>"SebINF", "value"=>"/sebinf/index.html", "css_selector"=>"#menu li:nth-child(6)"}}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mRule Load (0.2ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."id" = 92) [0m
+  [4;36;1mRule Update (0.2ms)[0m   [0;1mUPDATE "rules" SET "updated_at" = '2010-09-30 23:15:05', "value" = '/sebinf/index.html', "text" = 'SebINF' WHERE "id" = 92[0m
+Redirected to http://0.0.0.0:3000/rules/92
+Completed in 121ms (DB: 1) | 302 Found [http://0.0.0.0/rules/92]
+
+
+Processing RulesController#show (for 127.0.0.1 at 2010-09-30 20:15:05) [GET]
+  Parameters: {"id"=>"92"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mRule Load (0.2ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."id" = 92) [0m
+Rendering template within layouts/rules
+Rendering rules/show
+Completed in 87ms (View: 72, DB: 1) | 200 OK [http://0.0.0.0/rules/92]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:15:09) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 40ms (View: 16, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing RulesController#index (for 127.0.0.1 at 2010-09-30 20:17:01) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mRule Load (0.9ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = '17') [0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+Rendering template within layouts/rules
+Rendering rules/index
+Completed in 80ms (View: 56, DB: 2) | 200 OK [http://0.0.0.0/rules?page_id=17]
+
+
+Processing RulesController#new (for 127.0.0.1 at 2010-09-30 20:17:03) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+Rendering template within layouts/rules
+Rendering rules/new
+Completed in 36ms (View: 13, DB: 1) | 200 OK [http://0.0.0.0/rules/new?page_id=17]
+
+
+Processing RulesController#create (for 127.0.0.1 at 2010-09-30 20:17:47) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2+k4RqePtWM83lgdR0SM2yovuVmcS5/C2vIlkB1duHQ=", "rule"=>{"option"=>"clone", "page_id"=>"17", "text"=>"", "value"=>"", "css_selector"=>".post:nth-child(4)"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mRule Create (0.2ms)[0m   [0;1mINSERT INTO "rules" ("created_at", "option", "updated_at", "text", "page_id", "value", "css_selector") VALUES('2010-09-30 23:17:47', 'clone', '2010-09-30 23:17:47', '', 17, '', '.post:nth-child(4)')[0m
+Redirected to http://0.0.0.0:3000/rules/new?page_id=17
+Completed in 116ms (DB: 1) | 302 Found [http://0.0.0.0/rules]
+
+
+Processing RulesController#new (for 127.0.0.1 at 2010-09-30 20:17:47) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+Rendering template within layouts/rules
+Rendering rules/new
+Completed in 28ms (View: 7, DB: 1) | 200 OK [http://0.0.0.0/rules/new?page_id=17]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:17:51) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;35;1mRule Load (1.0ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 104ms (View: 80, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]
+
+
+Processing RulesController#index (for 127.0.0.1 at 2010-09-30 20:18:32) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mRule Load (1.0ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."page_id" = '17') [0m
+  [4;36;1mPage Load (0.2ms)[0m   [0;1mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+Rendering template within layouts/rules
+Rendering rules/index
+Completed in 84ms (View: 61, DB: 2) | 200 OK [http://0.0.0.0/rules?page_id=17]
+
+
+Processing RulesController#edit (for 127.0.0.1 at 2010-09-30 20:18:36) [GET]
+  Parameters: {"page_id"=>"17", "id"=>"94"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mRule Load (0.2ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."id" = 94) [0m
+Rendering template within layouts/rules
+Rendering rules/edit
+Completed in 23ms (View: 7, DB: 1) | 200 OK [http://0.0.0.0/rules/94/edit?page_id=17]
+
+
+Processing RulesController#update (for 127.0.0.1 at 2010-09-30 20:18:50) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"2+k4RqePtWM83lgdR0SM2yovuVmcS5/C2vIlkB1duHQ=", "id"=>"94", "rule"=>{"option"=>"clone", "text"=>"Olá mundo", "value"=>"http://www.googe.com", "css_selector"=>".post:nth-child(4)"}}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mRule Load (0.2ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."id" = 94) [0m
+  [4;35;1mRule Update (0.2ms)[0m   [0mUPDATE "rules" SET "updated_at" = '2010-09-30 23:18:50', "value" = 'http://www.googe.com', "text" = 'Olá mundo' WHERE "id" = 94[0m
+Redirected to http://0.0.0.0:3000/rules/94
+Completed in 123ms (DB: 1) | 302 Found [http://0.0.0.0/rules/94]
+
+
+Processing RulesController#show (for 127.0.0.1 at 2010-09-30 20:18:51) [GET]
+  Parameters: {"id"=>"94"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mRule Load (0.2ms)[0m   [0mSELECT * FROM "rules" WHERE ("rules"."id" = 94) [0m
+Rendering template within layouts/rules
+Rendering rules/show
+Completed in 20ms (View: 4, DB: 1) | 200 OK [http://0.0.0.0/rules/94]
+
+
+Processing TransformController#index (for 127.0.0.1 at 2010-09-30 20:18:55) [GET]
+  Parameters: {"page_id"=>"17"}
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mPage Load (0.2ms)[0m   [0mSELECT * FROM "pages" WHERE ("pages"."id" = 17) [0m
+  [4;36;1mRule Load (0.9ms)[0m   [0;1mSELECT * FROM "rules" WHERE ("rules"."page_id" = 17) [0m
+Rendering transform/index
+Completed in 39ms (View: 16, DB: 2) | 200 OK [http://0.0.0.0/?page_id=17]

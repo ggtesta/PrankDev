@@ -16,29 +16,12 @@ class TransformIndexView < Effigy::Rails::View
     
     @rules.each do |rule|                       # itera sobre as regras
       
-      # opção que tem que morrer... substituir somente por 'clone'
       result = case rule.option
-      
-        # opção que vai morrer... substituir somente por 'clone'
-        when 'newItemList' then 
-          rule.css_selector = insertUlList(rule.css_selector)       # trata adições múltiplas
-          rule.css_selector = normalizeCSSRule(rule.css_selector)
-          
-          if (rule.value.empty?) then
-            find(rule.css_selector).append("<li>#{rule.text}</li>") 
-          else
-            find(rule.css_selector).append("<li><a href=\"#{rule.value}\">#{rule.text}</a></li>")
-          end
-          
         # clona qualquer elemento selecionado... tá capenga  
         when 'clone' then 
-        
           rule.css_selector.split(',').each { |one_selector|
-            puts(normalizeCSSRule(one_selector))
-            clone(normalizeCSSRule(one_selector), rule.value)
-            
-          }
-          
+            clone(normalize_rule(one_selector), rule.value, rule.text)
+          }         
         else # case
         
           if rule.text.empty? then              # elimina itens com texto em branco
@@ -46,90 +29,70 @@ class TransformIndexView < Effigy::Rails::View
           elsif (!rule.value.nil?) then
             text(rule.css_selector, rule.text)
             attr(rule.css_selector, 'href', rule.value)
-            puts 'ola'
           else
             text(rule.css_selector, rule.text)
           end
-            
       end # case       
     end # .each
-
     # puts output
-
  end  # transform
   
   
-  def clone(css_select, value)
-          select(css_select).each do |node|
-            attributes = ''
-            node.attributes().each { |k,v|
-              attributes.concat(k + "=\"" + v + "\"")
-            }
-            puts(node.parent.name)
-            new_content = ''
-            if (!value.nil?) then
-             # puts node.name
-              if node.name != 'a' then    # merda...
-                new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
-              else
-                new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
-              end
-            else
-              new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
-            end
-         #   puts(new_content)
-           # puts find(css_select).append(new_content)
-            find(css_select).append(new_content)
-          end
-   end
-  
-  
-  # método recursivo para eliminar possíveis tags excessivas e inserir o seletor ul
-  # vai morrer...
-  def insertUl(splited)
-    size = splited.size
+  def clone(css_select, value, new_text)
     
-    if splited[size-1].eql?('ul') then
-      return splited
-    else
-      if size > 1 then
-        splited.pop
-        insertUl(splited)
-      else 
-        splited.push('ul')
-        return splited
+    select(css_select).each do |node|
+      
+      attributes = ''
+      node.attributes().each { |k,v|
+        attributes.concat(k + "=\"" + v + "\"")
+      }
+      
+      new_content = ''
+      if Rule::STRUCTURAL_TAGS.include?(node.name) then
+##        new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
+##        if (!value.nil?) then
+        new_node = node.clone
+         
+        # verifica se o nodo filho é do tipo a para inserir correspondente link 
+        if (node.child.name != 'a') && (!value.nil?) then
+          new_node.child.set_attribute('href', value)
+        end
+        
+        # insere texto dado no novo duplicado
+        if (!new_text.nil?) then
+          insert_content(new_node, new_text)
+        end
+           
+        node.after(new_node)
+      
+      elsif Rule::FORMATTING_TAGS.include?(node.name) then
       end
+      
     end
   end
 
-
-# método para inserir tag ul em um ou mais seletores CSS
-# vai morrer...
-  def insertUlList(s)
-
-    selectors = s.split(',')
-    final_result = ''
+# Chamada recursiva para inserir conteúdo (texto) no nodo dado.
+# O conteúdo deve ser inserido no último nodo filho.
+  def insert_content(node, new_content)
   
-    selectors.each { |selector| 
-      result = insertUl(selector.split)
-      s = ''
-      result.each { |subs| s.concat(subs + ' ') }
-      final_result.concat(s).concat(' , ')
-    }
-  
-    return final_result.chop!
+    if node.children.empty? then
+      node.content=(new_content)
+    else
+      insert_content(node.child, new_content)
+    end
+    node
+    
   end
 
 
 # retira vírgulas e espaços em branco ao final de um seletor CSS 
 # (usado quando uma regra tem mais de um seletor separados com vírgulas)
-  def normalizeCSSRule(s)
+  def normalize_rule(s)
     size = s.size
     if (s[size - 1].chr == ',') then
       s.chop!
     end
-    s.rstrip!
-    s.lstrip!
+    s.strip!
     return s
   end
   
