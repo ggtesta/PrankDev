@@ -1,4 +1,4 @@
-Ferramenta para modificar um template HTML através de seletores CSS
+Ferramenta para modificar templates HTML através de seletores CSS
 
 
 Ruby      1.8.7
@@ -27,4 +27,4 @@ TODO list:
 #   Modelar classe File, para ser utilizada com outros arquivos (imagens, css, etc),
     deixando Page somente para arquivos HTML.
 
-
+#   Criar classe File e setar Page como subclasse para arquivos HTML
