@@ -1,0 +1,137 @@
+# app/views/magic/index.html.effigy
+
+class TransformIndexView < Effigy::Rails::View
+  
+
+  #metodo que sobrescreve Effigy::View::transform e aplica as regras ao template
+  def transform
+
+# TODO: setar o template do Effigy para @page.file.path
+    
+#    file = File.open(@page.file.path)
+#    temp_string = ""
+#    file.each { |line| temp_string.concat(line.to_s) }
+#    file.close
+#    @current_context = Nokogiri::HTML::Document.new(temp_string)
+    
+    @rules.each do |rule|                       # itera sobre as regras
+      
+      # opção que tem que morrer... substituir somente por 'clone'
+      result = case rule.option
+      
+        # opção que vai morrer... substituir somente por 'clone'
+        when 'newItemList' then 
+          rule.css_selector = insertUlList(rule.css_selector)       # trata adições múltiplas
+          rule.css_selector = normalizeCSSRule(rule.css_selector)
+          
+          if (rule.value.empty?) then
+            find(rule.css_selector).append("<li>#{rule.text}</li>") 
+          else
+            find(rule.css_selector).append("<li><a href=\"#{rule.value}\">#{rule.text}</a></li>")
+          end
+          
+        # clona qualquer elemento selecionado... tá capenga  
+        when 'clone' then 
+        
+          rule.css_selector.split(',').each { |one_selector|
+            puts(normalizeCSSRule(one_selector))
+            clone(normalizeCSSRule(one_selector), rule.value)
+            
+          }
+          
+        else # case
+        
+          if rule.text.empty? then              # elimina itens com texto em branco
+            remove(rule.css_selector)
+          elsif (!rule.value.nil?) then
+            text(rule.css_selector, rule.text)
+            attr(rule.css_selector, 'href', rule.value)
+            puts 'ola'
+          else
+            text(rule.css_selector, rule.text)
+          end
+            
+      end # case       
+    end # .each
+
+    # puts output
+
+ end  # transform
+  
+  
+  def clone(css_select, value)
+          select(css_select).each do |node|
+            attributes = ''
+            node.attributes().each { |k,v|
+              attributes.concat(k + "=\"" + v + "\"")
+            }
+            puts(node.parent.name)
+            new_content = ''
+            if (!value.nil?) then
+             # puts node.name
+              if node.name != 'a' then    # merda...
+                new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
+              else
+                new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
+              end
+            else
+              new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
+            end
+         #   puts(new_content)
+           # puts find(css_select).append(new_content)
+            find(css_select).append(new_content)
+          end
+   end
+  
+  
+  # método recursivo para eliminar possíveis tags excessivas e inserir o seletor ul
+  # vai morrer...
+  def insertUl(splited)
+    size = splited.size
+    
+    if splited[size-1].eql?('ul') then
+      return splited
+    else
+      if size > 1 then
+        splited.pop
+        insertUl(splited)
+      else 
+        splited.push('ul')
+        return splited
+      end
+    end
+  end
+
+
+# método para inserir tag ul em um ou mais seletores CSS
+# vai morrer...
+  def insertUlList(s)
+
+    selectors = s.split(',')
+    final_result = ''
+  
+    selectors.each { |selector| 
+      result = insertUl(selector.split)
+      s = ''
+      result.each { |subs| s.concat(subs + ' ') }
+      final_result.concat(s).concat(' , ')
+    }
+  
+    return final_result.chop!
+  end
+
+
+# retira vírgulas e espaços em branco ao final de um seletor CSS 
+# (usado quando uma regra tem mais de um seletor separados com vírgulas)
+  def normalizeCSSRule(s)
+    size = s.size
+    if (s[size - 1].chr == ',') then
+      s.chop!
+    end
+    s.rstrip!
+    s.lstrip!
+    return s
+  end
+  
+end
+

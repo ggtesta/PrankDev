@@ -1,0 +1,27 @@
+<h1>Editing rule</h1>
+
+<% form_for(@rule) do |f| %>
+  <%= f.error_messages %>
+
+ <p>
+    <%= f.label :css_selector, "CSS Selector" %><br />
+    <%= f.text_field :css_selector, :size => "35" %>
+  </p>
+  <p>
+    <%= f.label :text, "Text" %><br />
+    <%= f.text_area :text, :size => "40x5" %>
+  </p>
+  <p>
+    <%= f.label :value, "Link" %><br />
+    <%= f.text_field :value, :size => "35" %>
+  </p>
+  <p>
+    <%= f.label :option, "Options" %>
+    <%= f.select :option, Rule::OPTIONS, :prompt => 'Chose an option' %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', rules_path(:page_id => @rule.page_id) %>

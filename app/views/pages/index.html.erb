@@ -1,0 +1,20 @@
+<h1>Listing files</h1>
+
+<table>
+
+<% @pages.each do |page| %>
+  <tr>
+    <td><%=h page.file.path.split("pages")[1] %></td>
+        <td><%= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if (page.file_content_type == "text/html") then %>
+            <td><%= link_to('Show transformed', :controller => :transform, :action => :index, :page_id => page.id) %>   </td>
+            <td><%= link_to('Edit Rules', :controller => :rules, :action => :index, :page_id => page.id ) %></td>
+    <% end %>
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Add File', new_page_path %>

@@ -1,6 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
+  map.root :controller => "transform", :action => "index"
 
-  map.connect "pages#index", :controller => "pages"
+  map.resources :users
+  map.resources :rules
+  map.resources :pages
+  map.resources :admin
+  map.resources :transform
+  
+  map.resource  :session
+
+  #map.signup '/signup', :controller => 'users', :action => 'new'
+  map.index  '/index', :controller => 'admin', :action => 'index'
+  map.login  '/login', :controller => 'admin', :action => 'login'
+  map.logout '/logout', :controller => 'admin', :action => 'logout'
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

@@ -1,0 +1,15 @@
+<p>
+  <%= "Welcome, #{@user.name}!" %>
+</p>
+
+<p>
+  <%= link_to "My Pages", pages_path %>
+</p>
+
+<p>
+  <%= link_to "My Account" %>
+</p>
+
+<p>
+  <%= link_to "Logout", :controller => 'admin', :action => 'logout' %>
+</p>

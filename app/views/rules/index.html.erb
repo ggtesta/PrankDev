@@ -1,0 +1,28 @@
+<h1>Listing rules<h1>
+<h2><%= "for page #{@page.file.path}" %></h2>
+
+
+<table>
+  <tr>
+    <th>Css selector</th>
+    <th>Text</th>
+    <th>Option</th>
+    <th>Value</th>
+  </tr>
+
+<% @rules.each do |rule| %>
+  <tr>
+    <td><%=h rule.css_selector %></td>
+    <td><%=h rule.text %></td>
+    <td><%=h rule.option %></td>
+    <td><%=h rule.value %></td>
+    <td><%= link_to 'Show', rule %></td>
+    <td><%= link_to 'Edit', edit_rule_path(rule, :page_id => @page.id ) %></td>
+    <td><%= link_to 'Destroy', rule, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<%= link_to 'New rule', new_rule_path(:page_id => @page.id) %> | 
+<%= link_to 'My Pages', :controller => 'pages', :action => 'index' %>

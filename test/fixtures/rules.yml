@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  css_selector: MyString
+  new_text: MyText
+
+two:
+  css_selector: MyString
+  new_text: MyText

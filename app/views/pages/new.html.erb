@@ -1,0 +1,13 @@
+<h1>Add File</h1>
+
+<% form_for @page, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  
+  <%= f.file_field :file %>
+  
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', pages_path %>
