@@ -8,10 +8,17 @@ class TransformIndexView < Effigy::Rails::View
 
 # TODO: setar o template do Effigy para @page.file.path
     
-#    file = File.open(@page.file.path)
-#    temp_string = ""
-#    file.each { |line| temp_string.concat(line.to_s) }
-#    file.close
+    file = File.open(@page.file.path)
+    temp_string = ""
+    file.each { |line| temp_string.concat(line.to_s) }
+    file.close
+    
+    File.delete("app/templates/transform/index.html")
+    
+    template = File.new("app/templates/transform/index.html","w")
+    template.puts(temp_string)
+    template.close
+    
 #    @current_context = Nokogiri::HTML::Document.new(temp_string)
     
     @rules.each do |rule|                       # itera sobre as regras
@@ -28,14 +35,34 @@ class TransformIndexView < Effigy::Rails::View
             remove(rule.css_selector)
           elsif (!rule.value.nil?) then
             text(rule.css_selector, rule.text)
-            attr(rule.css_selector, 'href', rule.value)
+#            attr(rule.css_selector, 'href', rule.value)
           else
             text(rule.css_selector, rule.text)
           end
       end # case       
     end # .each
-    # puts output
- end  # transform
+    
+    # melhorar criando 'file2.html'
+    # exemplo: file.path:
+    # /home/ggtesta/rails2.3/TCC/PrakDev/public/pages/1/index.html
+
+    # /home/ggtesta/rails2.3/TCC/PrakDev/public/pages/1
+    base = @page.file.path.split(@page.user_id.to_s)[0] + @page.user_id.to_s
+    
+    file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
+    file_name_without_ext = file_name.split('.')[0]  # /index
+    file_extension = file_name.split('.')[1]         # html
+
+    File.delete(base + file_name_without_ext + '2.' + file_extension) if 
+      File.exists?(base + file_name_without_ext + '2.' + file_extension)
+          
+    out = File.new(base + file_name_without_ext + '2.' + file_extension, "w+")
+    out.puts(output)
+    out.close
+    
+#    redirect_to("pages/#{@page.user_id.to_s}#{file_name_without_ext}2.#{file_extension}")
+    
+  end  # transform
   
   
   def clone(css_select, value, new_text)
@@ -49,21 +76,26 @@ class TransformIndexView < Effigy::Rails::View
       
       new_content = ''
       if Rule::STRUCTURAL_TAGS.include?(node.name) then
-##        new_content = "<#{node.name} #{attributes}>#{node.inner_html}</#{node.name}>"
-##        if (!value.nil?) then
         new_node = node.clone
-         
-        # verifica se o nodo filho é do tipo a para inserir correspondente link 
-        if (node.child.name != 'a') && (!value.nil?) then
-          new_node.child.set_attribute('href', value)
-        end
         
         # insere texto dado no novo duplicado
         if (!new_text.nil?) then
           insert_content(new_node, new_text)
         end
-           
+        
         node.after(new_node)
+       
+        # verifica se o nodo filho é do tipo a para inserir correspondente link 
+        if (node.child.name != 'a') && (!value.nil?) then
+           new_node.add_previous_sibling("\<a href=\"#{value}\"\>")
+       #    new_node.add_next_sibling("\<\/a\>")
+        #  new_node.after("\<\a\>")
+#          new_node.child.set_attribute('href', value)
+          puts 'oi'
+        end
+        
+
+        
       
       elsif Rule::FORMATTING_TAGS.include?(node.name) then
       end

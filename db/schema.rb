@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100929195107) do
+ActiveRecord::Schema.define(:version => 20101009193212) do
 
   create_table "pages", :force => true do |t|
     t.datetime "created_at"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20100929195107) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.integer  "user_id"
+    t.string   "file_subpath"
   end
 
   create_table "rules", :force => true do |t|

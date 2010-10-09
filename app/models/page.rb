@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
   
 # Paperclip TODO: mudar endereço do arquivo do usuário
 
-  has_attached_file :file, :path => ":rails_root/public/pages/:user_id/:basename.:extension" 
+  has_attached_file :file, :path => ":rails_root/public/pages/:user_id:file_subpath/:basename.:extension" 
   
 
 #  def user_id

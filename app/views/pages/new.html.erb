@@ -1,10 +1,15 @@
-<h1>Add File</h1>
+<h1>Add a File</h1>
 
 <% form_for @page, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
-  
-  <%= f.file_field :file %>
-  
+  <p>
+    <%= f.label :file, "File: " %><br>
+    <%= f.file_field :file %>
+  </p>
+  <p>
+    <%= f.label :file_subpath, "Save at directory: " %><br>
+    <%= f.text_field :file_subpath, :value => '/' %>
+  </p>
   <p>
     <%= f.submit 'Create' %>
   </p>
