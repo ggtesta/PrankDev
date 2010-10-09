@@ -6,8 +6,8 @@
   <tr>
     <td><%=h link_to(page.file.path.split(page.user_id.to_s)[1], page.file.path.split('public')[1] ) %></td>
         <td><%= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete %></td>
-        
     <% if (page.file_content_type == "text/html") then %>
+    
             <td><%= link_to('Show transformed', :controller => :transform, :action => :index, :page_id => page.id) %>   </td>
             <td><%= link_to('Edit Rules', :controller => :rules, :action => :index, :page_id => page.id ) %></td>
     <% end %>
@@ -18,4 +18,4 @@
 
 <br />
 
-<%= link_to 'Add File', new_page_path %>
+<%= link_to 'Add File', new_page_path %> | <%= link_to 'Admin', :controller => 'admin' %>
