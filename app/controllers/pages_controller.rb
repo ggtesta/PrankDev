@@ -25,12 +25,18 @@ class PagesController < ApplicationController
 
   # POST /pages
   def create
-    @page = Page.new(params[:page])
+    @page = Page.new(params[:page])    
     @page.user_id = session[:user_id]
-    if (@page.file_subpath == '/') then @page.file_subpath == '' end
+    
+    
     if (@page.file_subpath.size > 1) && (@page.file_subpath[0] != '/') then
       @page.file_subpath = '/'.concat(@page.file_subpath)
     end
+    
+    if @page.file_subpath[@page.file_subpath.size-1] == '/' then
+      @page.file_subpath.chop!
+    end
+    if (@page.file_subpath == '/') then @page.file_subpath = '' end
     
     if @page.save
       flash[:notice] = "The file #{@page.file.path.split('pages')[1]} was successfully uploaded."

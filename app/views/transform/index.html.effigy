@@ -1,12 +1,9 @@
 # app/views/magic/index.html.effigy
-
+ 
 class TransformIndexView < Effigy::Rails::View
-  
 
   #metodo que sobrescreve Effigy::View::transform e aplica as regras ao template
   def transform
-
-# TODO: setar o template do Effigy para @page.file.path
     
     file = File.open(@page.file.path)
     temp_string = ""
@@ -19,7 +16,16 @@ class TransformIndexView < Effigy::Rails::View
     template.puts(temp_string)
     template.close
     
-#    @current_context = Nokogiri::HTML::Document.new(temp_string)
+    base = @page.file.path.split(@page.user_id.to_s)[0] + @page.user_id.to_s
+    file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
+    file_name_without_ext = file_name.split('.')[0]  # /index
+    file_extension = file_name.split('.')[1]         # html
+
+    File.delete(base + file_name_without_ext + '2.' + file_extension) if 
+      File.exists?(base + file_name_without_ext + '2.' + file_extension)
+          
+    out = File.new(base + file_name_without_ext + '2.' + file_extension, "w+")
+    
     
     @rules.each do |rule|                       # itera sobre as regras
       
@@ -42,28 +48,35 @@ class TransformIndexView < Effigy::Rails::View
       end # case       
     end # .each
     
-    # melhorar criando 'file2.html'
-    # exemplo: file.path:
-    # /home/ggtesta/rails2.3/TCC/PrakDev/public/pages/1/index.html
-
-    # /home/ggtesta/rails2.3/TCC/PrakDev/public/pages/1
-    base = @page.file.path.split(@page.user_id.to_s)[0] + @page.user_id.to_s
-    
-    file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
-    file_name_without_ext = file_name.split('.')[0]  # /index
-    file_extension = file_name.split('.')[1]         # html
-
-    File.delete(base + file_name_without_ext + '2.' + file_extension) if 
-      File.exists?(base + file_name_without_ext + '2.' + file_extension)
-          
-    out = File.new(base + file_name_without_ext + '2.' + file_extension, "w+")
     out.puts(output)
     out.close
     
-#    redirect_to("pages/#{@page.user_id.to_s}#{file_name_without_ext}2.#{file_extension}")
-    
   end  # transform
   
+   def yield_transform_and_output(document_or_fragment)
+      @current_context = document_or_fragment
+      yield if block_given?
+      transform
+      
+    
+      file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
+      file_name_without_ext = file_name.split('.')[0]  # /index
+      file_extension = file_name.split('.')[1]         # html
+      
+      # retorno:
+       "<script language=\"JavaScript\">
+      <!--St
+        var time = null
+        function move() {
+        window.location = 'users_files/#{@page.user_id.to_s}#{file_name_without_ext}2.#{file_extension}'
+      }
+      //-->
+      </script>
+
+      <body onload=\"timer=setTimeout('move()',1)\"></body>
+      "
+    end
+    
   
   def clone(css_select, value, new_text)
     
