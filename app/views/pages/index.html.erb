@@ -1,22 +1,61 @@
-<h1>Listing files</h1>
 
-<table>
 
-<% @pages.each do |page| %>
-  <tr>
-    <td><%=h link_to(page.file.path.split(page.user_id.to_s)[1], page.file.path.split('public')[1] ) %></td>
-        <td><%= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% if (page.file_content_type == "text/html") then %>
-    
-            <td> <%= link_to('Show Transformed', :controller => :transform, :action => :index, :page_id => page.id) %>  </td>
-            <td><%= link_to('Edit Rules', :controller => :rules, :action => :index, :page_id => page.id ) %></td>
-    
-   
-    <% end %>
-  </tr>
-<% end %>
-</table>
 
-<br />
+  <div id="red_bar_title">
+    <h1>
+      <%= "Meus Arquivos" %>
+    </h1>
+  </div>
 
-<%= link_to 'Add File', new_page_path %> | <%= link_to 'Admin', :controller => 'admin' %>
+  <div id="body_write">
+  <div id="two-columns">
+    <div id="column1">
+        <h3>
+          Meu menu:
+        </h3>
+        <ul>
+			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Adicionar Arquivo", new_page_path %></li>
+			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Meus Arquivos", pages_path %></li>
+			    <li><%= image_tag("icons/user-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Configurações de conta" %></li>
+			    <li><%= image_tag("icons/logout-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Logout", :controller => 'admin', :action => 'logout' %></li>
+		    </ul>
+        
+     </div>
+     <div id="column2">
+        
+      <div id="files">
+        <table>
+          <% @pages.each do |page| %>
+          <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+            <td width ="20"><%= image_tag("icons/new-page-icon.png", :border => 0, :size => "16x16" ) %> </td>
+            <td><%=h link_to(page.file.path.split(page.user_id.to_s)[1], page.file.path.split('public')[1],
+               :target => "_blank" ) %></td>
+            
+                
+              <% if (page.file_content_type == "text/html") then %>
+                <td width = "20"> <%= link_to image_tag("icons/accept-icon.png", :border => 0, :size => "16x16"), 
+                 :controller => :transform, :action => :index, 
+                :page_id => page.id, :target => "_blank", :title => "Ver arquivo modificado" %>  </td>                              
+                <td width = "20"><%= link_to image_tag("icons/info-icon.png", :border => 0, :size => "16x16"), 
+                   :controller => :rules, :action => :index, :page_id => page.id, :title => "Editar Regras"  %></td>
+                
+              <% else %>
+                <td width = "20">
+                <td width = "20">   
+              <% end %>
+                  <td width = "20"><%= link_to image_tag("icons/delete-icon.png", :border => 0, :size => "16x16"), 
+                page, :confirm => 'Tem certeza que quer excluir o arquivo?', :title => "Deletar arquivo", :method => :delete %></td>
+           
+            </tr>
+          <% end %>
+        </table>
+      </div>
+
+       </div>
+    </div>
+    </div>
+

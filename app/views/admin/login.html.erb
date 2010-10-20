@@ -1,61 +1,29 @@
-<div>
+ <p>
+        Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+</p>
+
+
+<div id ="home_login">
 
   <% form_tag do %>
-  
-  <fieldset>
-  
-    <legend>Please Log In</legend>
     
     <div>
-      <label for="username">Name:</label><br>
-      <%= text_field_tag :username, params[:name] %>
+      <label for="username">Usuário:</label><br>
+      <%= text_field_tag :username, params[:name], :size => '25' %>
     </div>
-
+    <br>
     <div>
-      <label for="password">Password:</label><br>
-      <%= password_field_tag :password, params[:password] %>
+      <label for="password">Senha:</label><br>
+      <%= password_field_tag :password, params[:password], :size => '25' %>
     </div>
-
+    <br>
     <div>
       <%= submit_tag "Login" %>
     </div>
-    
-  </fieldset>
-  
-  <% end %>
-</div>
-
-
-<div>
-
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
-  
-  <fieldset>
-  
-    <legend>Register</legend>
-    
-     <div>
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </div>
-    <div>
-      <%= f.label :username %><br />
-      <%= f.text_field :username %>
-    </div>
-    <div>
-      <%= f.label :user_password, 'Password' %><br />
-      <%= f.password_field :password %>
-    </div>
-    <div>
-      <%= f.label :user_password_confirmation, 'Confirm Password' %><br />
-      <%= f.password_field :password_confirmation %>
-    </div>
-    <div>
-      <%= f.submit 'Create', :controller => 'users', :action => 'create' %>
-    </div>
-    
-  </fieldset>
   
   <% end %>
 </div>

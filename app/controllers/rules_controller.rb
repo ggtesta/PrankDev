@@ -28,7 +28,7 @@ class RulesController < ApplicationController
    
     if @rule.save
       flash[:notice] = "Regra com seletor '#{@rule.css_selector}' criada com sucesso."
-      redirect_to(:action => 'new', :page_id => @rule.page_id )
+      redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
     else
       render :action => "new"
     end

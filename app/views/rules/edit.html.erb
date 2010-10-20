@@ -1,27 +1,64 @@
-<h1>Editing rule</h1>
 
-<% form_for(@rule) do |f| %>
-  <%= f.error_messages %>
+  <div id="red_bar_title">
+    <h1>
+      <%= "Editar Regra" %>
+    </h1>
+  </div>
 
- <p>
-    <%= f.label :css_selector, "CSS Selector" %><br />
-    <%= f.text_field :css_selector, :size => "35" %>
-  </p>
-  <p>
-    <%= f.label :text, "Text" %><br />
-    <%= f.text_area :text, :size => "40x5" %>
-  </p>
-  <p>
-    <%= f.label :value, "Link" %><br />
-    <%= f.text_field :value, :size => "35" %>
-  </p>
-  <p>
-    <%= f.label :option, "Options" %>
-    <%= f.select :option, Rule::OPTIONS, :prompt => 'Chose an option' %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+  <div id="body_write">
+  <div id="two-columns">
+    <div id="column1">
+        <h3>
+          Meu menu:
+        </h3>       
 
-<%= link_to 'Back', rules_path(:page_id => @rule.page_id) %>
+			   
+        <ul>
+          <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Adicionar Regra", new_rule_path(:page_id => @rule.page_id) %></li>
+			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Adicionar Arquivo", new_page_path %></li>
+			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Meus Arquivos", pages_path %></li>
+			    <li><%= image_tag("icons/user-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Configurações de conta" %></li>
+			    <li><%= image_tag("icons/logout-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Logout", :controller => 'admin', :action => 'logout' %></li>
+		    </ul>
+        
+
+     </div>
+     <div id="column2">
+        
+     <% form_for(@rule) do |f| %>
+      <%= f.error_messages %>
+ 
+      <p>
+        <%= f.label :css_selector, "Seletor CSS" %><br />
+        <%= f.text_field :css_selector, :size => "35" %>
+      </p>
+      <p>
+        <%= f.label :text, "Novo texto" %><br />
+        <%= f.text_area :text, :size => "40x5" %>
+      </p>
+      <p>
+        <%= f.label :value, "Link" %><br />
+        <%= f.text_field :value, :size => "35" %>
+      </p>
+      <p>
+        <%= f.label :option, "Opções" %>
+        <%= f.select :option, Rule::OPTIONS, :prompt => 'Escolha uma opção' %>
+      </p>
+      <p>
+        <%= f.submit 'Atualizar' %>
+      </p>
+    <% end %>
+
+
+
+         <p><%= image_tag("icons/back-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Voltar para lista de regras", rules_path(:page_id => @rule.page_id) %></p>
+    </div>
+    </div>
+    </div>
+

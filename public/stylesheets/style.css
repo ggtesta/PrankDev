@@ -1,32 +1,32 @@
-
-/*
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
-*/
-
 body {
-	margin: 30px 0px 0px 0px;
-	padding: 0;
-	background: #EFDABB url(images/img01.jpg) repeat left top;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	color: #3E3B36;
-}
-
-h1, h2, h3 {
 	margin: 0;
 	padding: 0;
-	font-weight: normal;
-	color: #3E3530;
+	background: #EFDABB url(/images/background.jpg) repeat left top;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border: 0px auto;
+}
+
+img {
+  float: left;
+  padding: 3px 3px 0px 0px;
+}
+h1, h2, h3 {
+	margin: 0;
+	font-weight: bold;
+	color: #913c2f;
+	padding: 10px 25px 10px 80px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 90%;
+	
 }
 
 h2 {
-	font-size: 2.8em;
+	font-size: 2.0em;
 }
 
 h3 {
@@ -35,6 +35,7 @@ h3 {
 
 p, ul, ol {
 	margin-top: 0;
+	margin-bottom: 0;
 	line-height: 180%;
 }
 
@@ -43,10 +44,11 @@ ul, ol {
 
 a {
 	text-decoration: none;
-	color: #4D8D99;
+	color: #913c2f;
 }
 
 a:hover {
+	text-decoration: underline;
 }
 
 #wrapper {
@@ -56,145 +58,304 @@ a:hover {
 
 /* Header */
 
-#header-wrapper {
-	height: 100px;
-	background: #3C3230;
-	border-bottom: 10px solid #4F4440;
+#full_body {
+	background: url(/images/background.jpg) repeat left top;
+    padding: 0px;
 }
 
 #header {
-	width: 950px;
-	margin: 0 auto;
-	padding: 0px 0px 0px 30px;
+	margin: 0px auto;
+	margin-top: 40px;
+	background: url(/images/header.jpg) no-repeat center bottom;
+	height: 49px;
+	width: 960;
 }
+
+#home_header {
+	margin: 0px auto;
+	margin-top: 40px;
+	background: url(/images/home_header.jpg) no-repeat center bottom;
+	height: 49px;
+	width: 960;
+}
+
+#home_title {
+	margin: 0px auto;
+	background: url(/images/home_title.jpg) no-repeat center;
+	height: 193px;
+	width: 960;
+}
+
+#home_title p {
+	padding: 30px 30px 70px 500px;
+	text-align: right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 17px;
+	font-style: italic;
+}
+
+#body_write {
+	margin: 0 auto;
+	padding: 0;
+	background: url(/images/body.jpg) repeat-y center;
+	width: 960;
+}
+
+#body_write p {
+	padding: 10px 35px 10px 80px;
+	text-align: justify;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+}
+
+#body_write ul {
+
+
+}
+
+#body_write li {
+
+}
+
+#two-columns {
+	overflow: hidden;
+	width: 960px;
+	margin: 0px auto;
+	padding: 10px 0px 0px 0px;
+}
+
+#column1 {
+	float: right;
+	width: 290px;
+}
+
+#column1 p {
+	padding: 5px 30px 5px 5px;
+	text-align: justify;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+}
+
+#column1 li {
+	padding: 0px 30px 0px 0px;
+	text-align: justify;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+  list-style: none;
+	font-weight: bold;
+}
+
+#column2 {
+	float: left;
+	width: 670px;
+}
+
+#red_bar_home {
+	margin: 0 auto;
+	padding: 0;
+	background: url(/images/home_red_bar.jpg) no-repeat center;
+	height: 196px;
+	width: 960px;
+}
+
+#red_bar_home p {
+  float:left;
+	padding: 5px 10px 15px 80px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	font-size: 11px;
+  font-weight: bold;
+  width: 500px;
+}
+
+#home_login {
+  float: right;
+  padding: 15px 50px 15px 80px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	font-size: 13px;
+  font-weight: bold;
+}
+
+#home_login input:nth-child(1) {
+  float: right;
+}
+
+#red_bar_title {
+	margin: 0 auto;
+	padding: 0;
+	background: url(/images/red_title.jpg) no-repeat center;
+	height: 64px;
+	width: 960px;
+}
+
+#red_bar_title h1 {
+	padding: 12px 10px 15px 100px;
+	text-align: justify;
+	color: #FFFFFF;
+	font-size: 30px;
+  font-weight: normal;
+  font-style: italic;
+
+}
+
+table {
+  padding: 0px 0px 0px 0px;
+  border: 0;
+  margin: 0;
+  text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  border-collapse: collapse;
+  width: 550px;
+}
+
+#files {
+	padding: 10px 0px 0px 100px;
+}
+
+#files a {
+  color: #000000;
+}
+
+#add_file {
+	padding: 10px 10px 15px 10px;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#rules {
+	padding: 0px 0px 0px 100px;;
+}
+
+#rules a {
+  color: #000000;
+}
+
+
+.list-line-even {
+  background:   #DCDCDC;
+}
+
+.list-line-odd {
+  background:   #BFBFBF;
+}
+
+
+#footer {
+	margin: 0px auto;
+	margin-bottom: 40px;
+	padding: 0;
+	background: url(/images/footer.jpg) no-repeat center top;
+	height: 49px;
+	width: 960px;
+}
+
 
 /* Logo */
+#logo_title {
+	margin: 0 auto;
+	height: 100px;
+	background: url(/images/body.jpg) repeat-y center;
+	width: 960;
+}
 
 #logo {
-	width: 310px;
-	height: 140px;
-	margin: 0;
-	padding: 0;
-	background: url(images/img07.jpg) no-repeat left top;
-	color: #34312C;
-}
-
-#logo h1, #logo p {
-	margin: 0;
-	padding: 0;
-	letter-spacing: -2px;
-	text-align: center;
-	text-transform: lowercase;
-	font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-#logo h1 {
-	margin: 0px 0px -20px 0px;
-	padding: 20px 0px 0px 0px;
-	font-size: 50px;
-	color: #4D8D99;
-}
-
-#logo h1 a {
-	color: #4D8D99;
-}
-
-#logo p {
-	margin: 0px;
-	padding: 0px;
-	font-size: 30px;
-} 
-
-#logo a {
-	border: none;
-	background: none;
-	text-decoration: none;
-	color: #34312C;
-}
-
-/* Search */
-
-#search {
-	width: 310px;
-	height: 50px;
-	padding: 20px 0px 0px 0px;
-	background: url(images/img08.jpg) no-repeat left 10px;
-}
-
-#search form {
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 20px;
-}
-
-#search fieldset {
-	margin: 0;
-	padding: 0;
-	border: none;
-}
-
-#search-text {
-	width: 190px;
-	padding: 0px 5px 2px 10px;
-	border: none;
-	background: none;
-	text-transform: lowercase;
-	font: normal 11px Arial, Helvetica, sans-serif;
-	color: #34312C;
-}
-
-#search-submit {
-	width: 70px;
-	height: 22px;
-	border: none;
-	border: none;
-	background: none;
-	text-indent: -99999px;
-	color: #34312C;
+	float:left;
+	padding: 0px 0px 0px 70px;
+	width: 153px;
+	height: 95px;
 }
 
 /* Menu */
 
-#menu {
-	width: 310px;
-	margin: 0 auto 20px auto;
+#menu_home {
+	width: 960px;
+	margin: 0px auto;
 	padding: 0;
+	padding-top: 7px;
+}
+
+#menu_home ul {
+	margin: 0;
+	padding: 0px 30px 25px 0px;
+	list-style: none;
+	line-height: normal;
+}
+
+#menu_home li {
+	padding: 0px 0px 0px 0px;
+}
+
+#menu_home a {
+	display: inline;
+	float: right;
+	margin: 0px;
+	padding: 5px 15px 5px 15px;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000;
+}
+
+#menu_home a:hover, #menu_home .current_page_item a {
+	text-decoration: none;
+	background-color: ba6240;
+	color: #FFFFFF;
+}
+
+#menu_home .current_page_item a {
+	padding: 5px 15px 5px 15px;
+}
+
+
+
+
+#menu {
+	width: 960px;
+	margin: 0px auto;
+	padding: 0;
+	padding-top: 75px;
 }
 
 #menu ul {
 	margin: 0;
-	padding: 50px 0px 0px 0px;
+	padding: 0px 30px 25px 0px;
 	list-style: none;
 	line-height: normal;
 }
 
 #menu li {
+	padding: 0px 0px 0px 0px;
 }
 
 #menu a {
-	display: block;
-	width: 310px;
-	height: 32px;
+	display: inline;
+	float: right;
 	margin: 0px;
-	padding: 12px 0px 0px 30px;
-	background: url(images/img06.jpg) no-repeat left top;
+	padding: 5px 15px 5px 15px;
 	text-decoration: none;
-	text-transform: uppercase;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	font-weight: bold;
-	color: #FFF;
+	color: #000;
 }
 
 #menu a:hover, #menu .current_page_item a {
-	background: url(images/img05.jpg) no-repeat left top;
 	text-decoration: none;
+	background-color: ba6240;
+	color: #FFFFFF;
 }
 
 #menu .current_page_item a {
-	background: url(images/img05.jpg) no-repeat left top;
+	padding: 5px 15px 5px 15px;
 }
-
-/* Page */
 
 #page {
 	width: 920px;
@@ -214,9 +375,8 @@ a:hover {
 /* Content */
 
 #content {
-	float: right;
-	width: 490px;
-	padding: 30px 50px 0px 60px;
+	float: left;
+	position: absolute;
 }
 
 .post {
@@ -335,30 +495,11 @@ a:hover {
 #sidebar a:hover {
 }
 
-/* Calendar */
 
-#calendar {
-}
-
-#calendar_wrap {
-	padding: 20px;
-}
-
-#calendar table {
-	width: 100%;
-}
-
-#calendar tbody td {
-	text-align: center;
-}
-
-#calendar #next {
-	text-align: right;
-}
 
 /* Footer */
 
-#footer {
+#footder {
 	width: 920px;
 	height: 50px;
 	margin: 0 auto;
@@ -366,7 +507,7 @@ a:hover {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-#footer p {
+#footder p {
 	margin: 0;
 	padding-top: 20px;
 	line-height: normal;
@@ -376,6 +517,6 @@ a:hover {
 	color: #A0A0A0;
 }
 
-#footer a {
+#fodoter a {
 	color: #8A8A8A;
 }

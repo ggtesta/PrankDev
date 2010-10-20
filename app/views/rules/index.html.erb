@@ -1,28 +1,69 @@
-<h1>Listing rules<h1>
-<h2><%= "for page #{@page.file.path}" %></h2>
+  <div id="red_bar_title">
+    <h1>
+      <%= "Editar Regras" %>
+    </h1>
+  </div>
 
+  <div id="body_write">
+  <div id="two-columns">
+    <div id="column1">
+        <h3>
+          Meu menu:
+        </h3>       
 
-<table>
-  <tr>
-    <th>Css selector</th>
-    <th>Text</th>
-    <th>Option</th>
-    <th>Value</th>
-  </tr>
+			   
+        <ul>
+          <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Adicionar Regra", new_rule_path(:page_id => @page.id) %></li>
+			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Adicionar Arquivo", new_page_path %></li>
+			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Meus Arquivos", pages_path %></li>
+			    <li><%= image_tag("icons/user-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Configurações de conta" %></li>
+			    <li><%= image_tag("icons/logout-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Logout", :controller => 'admin', :action => 'logout' %></li>
+		    </ul>
+        
 
-<% @rules.each do |rule| %>
-  <tr>
-    <td><%=h rule.css_selector %></td>
-    <td><%=h rule.text %></td>
-    <td><%=h rule.option %></td>
-    <td><%=h rule.value %></td>
-    <td><%= link_to 'Show', rule %></td>
-    <td><%= link_to 'Edit', edit_rule_path(rule, :page_id => @page.id ) %></td>
-    <td><%= link_to 'Destroy', rule, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+     </div>
+     <div id="column2">
+        
+      <h2><%= "for page #{@page.file.path}" %></h2>
 
+     <div id="rules">
+      <table>
+        <tr>
+          <th>Texto</th>
+          <th>Seletor CSS</th>
+        </tr>
 
-<%= link_to 'New rule', new_rule_path(:page_id => @page.id) %> | 
-<%= link_to 'My Pages', :controller => 'pages', :action => 'index' %>
+      <% @rules.each do |rule| %>
+        <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+          <td><%=h image_tag("icons/ticket-icon.png", :border => 0, :size => "16x16") %>
+            <%=h truncate(rule.text, :length => 35) %></td>
+          
+          <td>
+            <%=h truncate(rule.css_selector, :length => 35) %></td>
+
+          
+          <td width = "20"><%= link_to image_tag("icons/page-edit-icon.png", :border => 0, :size => "16x16"), 
+             rule %></td>
+             
+          <td width = "20"><%= link_to image_tag("icons/page-edit-icon.png", :border => 0, :size => "16x16"), 
+             edit_rule_path(rule, :page_id => @page.id ) %></td>
+             
+          <td width = "20"><%= link_to image_tag("icons/delete-icon.png", :border => 0, :size => "16x16"), 
+            rule, :confirm => 'Tem certeza que quer excluir a regra?', :method => :delete, :title => "Deletar regra" %></td>
+        </tr>
+      <% end %>
+      </table>
+      
+     
+     </div>
+         <p><%= image_tag("icons/back-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Voltar para minhas páginas", pages_path  %></p>
+    </div>
+    </div>
+    </div>
+

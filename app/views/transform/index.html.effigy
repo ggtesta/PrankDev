@@ -3,12 +3,14 @@
 class TransformIndexView < Effigy::Rails::View
 
   #metodo que sobrescreve Effigy::View::transform e aplica as regras ao template
-  def transform
+  #TODO: limpar arquivos temporários  
+  # transformar página após cada regra nova.
+  def transform 
     
     file = File.open(@page.file.path)
     temp_string = ""
     file.each { |line| temp_string.concat(line.to_s) }
-    file.close
+    file.close  
     
     File.delete("app/templates/transform/index.html")
     
@@ -16,16 +18,17 @@ class TransformIndexView < Effigy::Rails::View
     template.puts(temp_string)
     template.close
     
+    
     base = @page.file.path.split(@page.user_id.to_s)[0] + @page.user_id.to_s
     file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
     file_name_without_ext = file_name.split('.')[0]  # /index
     file_extension = file_name.split('.')[1]         # html
 
+
     File.delete(base + file_name_without_ext + '2.' + file_extension) if 
       File.exists?(base + file_name_without_ext + '2.' + file_extension)
           
     out = File.new(base + file_name_without_ext + '2.' + file_extension, "w+")
-    
     
     @rules.each do |rule|                       # itera sobre as regras
       
@@ -34,17 +37,36 @@ class TransformIndexView < Effigy::Rails::View
         when 'clone' then 
           rule.css_selector.split(',').each { |one_selector|
             clone(normalize_rule(one_selector), rule.value, rule.text)
-          }         
+          }
+        # substitui uma imagemS
+        when 'image' then
+          select(rule.css_selector).each do |node|
+            puts rule.text 
+            node.set_attribute("src", rule.text)
+          end
         else # case
         
           if rule.text.empty? then              # elimina itens com texto em branco
             remove(rule.css_selector)
-          elsif (!rule.value.nil?) then
-            text(rule.css_selector, rule.text)
+            
+          elsif (rule.value != "") then
+            select(rule.css_selector).each do |node|
+
+              if node.name != "a" then
+                node.replace("<a href=\"#{rule.value}\">#{rule.text}<\/a>")
+              else
+                node.set_attribute("href", rule.value)
+                insert_content(node, rule.text)
+              end
+            end
+            
+ #           text(rule.css_selector, rule.text)
 #            attr(rule.css_selector, 'href', rule.value)
           else
             text(rule.css_selector, rule.text)
+            
           end
+          
       end # case       
     end # .each
     
@@ -68,7 +90,7 @@ class TransformIndexView < Effigy::Rails::View
       <!--St
         var time = null
         function move() {
-        window.location = 'users_files/#{@page.user_id.to_s}#{file_name_without_ext}2.#{file_extension}'
+        window.location = 'rules/new?page_id=#{@page.id}'
       }
       //-->
       </script>
@@ -78,8 +100,11 @@ class TransformIndexView < Effigy::Rails::View
     end
     
   
+  
+  
+  # método que duplica um nodo selecionado
   def clone(css_select, value, new_text)
-    
+
     select(css_select).each do |node|
       
       attributes = ''
@@ -101,20 +126,19 @@ class TransformIndexView < Effigy::Rails::View
         # verifica se o nodo filho é do tipo a para inserir correspondente link 
         if (node.child.name != 'a') && (!value.nil?) then
            new_node.add_previous_sibling("\<a href=\"#{value}\"\>")
-       #    new_node.add_next_sibling("\<\/a\>")
-        #  new_node.after("\<\a\>")
-#          new_node.child.set_attribute('href', value)
-          puts 'oi'
-        end
-        
 
+        else
+          new_node.child.set_attribute("href", value)
+        end
+          
         
-      
       elsif Rule::FORMATTING_TAGS.include?(node.name) then
+        
       end
       
     end
   end
+
 
 # Chamada recursiva para inserir conteúdo (texto) no nodo dado.
 # O conteúdo deve ser inserido no último nodo filho.

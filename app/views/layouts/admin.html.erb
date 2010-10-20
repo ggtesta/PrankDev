@@ -1,17 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Pages: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+<title>PrankDev</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"">
+ <%= stylesheet_link_tag 'style.css' %>
 </head>
 <body>
-
-<p style="color: green"><%= notice %></p>
-
-<%= yield %>
-
+  <div id="full_body">
+    <div id="home_header">
+    </div>
+    <div id="home_title">
+      <p>
+        Guigui bla bla bla bla asdf asdf asdf bla bla basjdf lçasjdf açlksjdf alçsfjd
+      </p>
+      <div id="menu_home">
+	      <%= render :partial => "menu" %>
+	    </div>
+    </div>
+    <div id="red_bar_home">
+       <p><%= notice %></p>
+      <%= yield %>
+    </div>
+    <div id="body_write">
+	  <p>
+        Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      </p>
+      <p>
+        Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
+      </p>
+    </div>
+    <div id="footer">
+    </div>  
+  </div>
 </body>
 </html>

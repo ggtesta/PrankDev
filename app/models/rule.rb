@@ -2,12 +2,12 @@ class Rule < ActiveRecord::Base
   belongs_to :page
   
   OPTIONS = [
-    [ "New Item in the List" ,"newItemList" ],  # deve ser removido
-    [ "Clone Item",           "clone" ]
+    [ "Clone Item", "clone" ],
+    [ "Image",      "image" ]
   ]
 
   # TODO: Completar lista
-  STRUCTURAL_TAGS = [ "div", "ul", "li", "p" ] 
+  STRUCTURAL_TAGS = [ "div", "ul", "li", "p", "table", "td", "tr", "spam" ] 
   
   FORMATTING_TAGS = [ "a", "b", "i", "s"]
   

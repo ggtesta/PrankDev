@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.root :controller => "transform", :action => "index"
+  map.root :controller => "admin", :action => "login"
 
+  map.resources :home
   map.resources :users
   map.resources :rules
   map.resources :pages
