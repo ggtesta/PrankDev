@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   layout "pages"
-  before_filter :authorize, :except => :login
+  before_filter :authorize, :except => :login 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 

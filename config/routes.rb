@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
 
   #map.signup '/signup', :controller => 'users', :action => 'new'
   map.index  '/index', :controller => 'admin', :action => 'index'
+  map.instructions  '/instructions', :controller => 'admin', :action => 'instructions'
+  map.template  '/templates', :controller => 'pages', :action => 'templates'
   map.login  '/login', :controller => 'admin', :action => 'login'
   map.logout '/logout', :controller => 'admin', :action => 'logout'
   

@@ -1,4 +1,5 @@
 class AdminController < ApplicationController
+  skip_before_filter :authorize, :only => [:instructions]
 
   def login
     @user = User.new
@@ -23,7 +24,8 @@ class AdminController < ApplicationController
 
   def index
     @user = User.find(session[:user_id])
-    puts @user;
   end
   
+  def instructions
+  end
 end

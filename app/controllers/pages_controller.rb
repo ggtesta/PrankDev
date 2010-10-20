@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  skip_before_filter :authorize, :only => [:templates]
+
 
   # GET /pages
   def index
@@ -54,8 +56,21 @@ class PagesController < ApplicationController
     end
     if (@page.file_subpath == '/') then @page.file_subpath = '' end
     
+   
+   
+   
+   
+    pieces = @page.file.path.split("/");
+    pieces[pieces.size - 1] = "#{pieces.last.split(".")[0]}2.#{pieces.last.split(".")[1]}"
+    @page.alias = ""
+    
+    pieces.each { |piece| @page.alias.concat(piece + "/") }
+    @page.alias.chop!
+
+    
+    
     if @page.save
-      flash[:notice] = "The file #{@page.file.path.split('pages')[1]} was successfully uploaded."
+      flash[:notice] = "The file #{@page.file_file_name} was successfully uploaded."
       redirect_to(:action => 'new') 
     else
       render :action => "new" 
@@ -81,6 +96,9 @@ class PagesController < ApplicationController
     @page.destroy
     flash[:notice] = "The file was succesfully deleted"
     redirect_to(:action => 'index')
+  end
+  
+  def templates
   end
   
 end

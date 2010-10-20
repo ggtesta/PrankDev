@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_filter :authorize, :only => 'create'
+  skip_before_filter :authorize, :only => [:new, :create]
 
   # GET /users
   def index
