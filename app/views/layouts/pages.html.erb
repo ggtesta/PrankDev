@@ -8,17 +8,19 @@
   <div id="full_body">
     <div id="header">
     </div>
+    
     <div id="logo_title">
       <div id="logo">
-        <img src="images/logo.jpg">
+        <%= image_tag "logo_small.jpg" %>
       </div>
     
       <div id="menu">
 		    <%= render :partial => "menu" %>
-	    </div>
+	    </div> 
     </div>
+    
     <p style="color: green"><%= notice %></p>
-     <%= yield %>
+    <%= yield %>
 
     <div id="footer">
     </div>  

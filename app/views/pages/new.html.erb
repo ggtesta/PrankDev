@@ -7,19 +7,8 @@
   <div id="body_write">
   <div id="two-columns">
     <div id="column1">
-        <h3>
-          Meu menu:
-        </h3>
-        <ul>
-			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
-			      <%= link_to "Adicionar Arquivo", new_page_path %></li>
-			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
-			      <%= link_to "Meus arquivos", pages_path %></li>
-			    <li><%= image_tag("icons/user-icon.png", :border => 0, :size => "16x16" ) %>
-			      <%= link_to "Configurações de conta" %></li>
-			    <li><%= image_tag("icons/logout-icon.png", :border => 0, :size => "16x16" ) %>
-			      <%= link_to "Logout", :controller => 'admin', :action => 'logout' %></li>
-		    </ul>
+
+        <%= render :partial => "context_menu" %>
         
      </div>
      <div id="column2">

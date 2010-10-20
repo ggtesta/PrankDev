@@ -1,23 +1,33 @@
-<p>
-  <b>Name:</b>
-  <%=h @user.name %>
-</p>
 
-<p>
-  <b>Username:</b>
-  <%=h @user.username %>
-</p>
+  <div id="red_bar_title">
+    <h1>
+      <%= "Nova Regra" %>
+    </h1>
+  </div>
 
-<p>
-  <b>Hashed password:</b>
-  <%=h @user.hashed_password %>
-</p>
+  <div id="body_write">
+  <div id="two-columns">
+    <div id="column1">
+    
+         <%= render :partial => "context_menu" %>
 
-<p>
-  <b>Salt:</b>
-  <%=h @user.salt %>
-</p>
+     </div>
+     <div id="column2">
+        
+      <p>
+        <b>Nome:</b>
+        <%=h @user.name %>
+      </p>
+
+      <p>
+        <b>Usuário:</b>
+        <%=h @user.username %>
+      </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+         <p><%= image_tag("icons/back-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Voltar para minha página", pages_path %></p>
+    </div>
+    </div>
+    </div>
+

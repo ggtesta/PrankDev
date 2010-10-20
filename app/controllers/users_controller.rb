@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
   end
 
   # GET /users/new
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       user = User.authenticate(@user.username, @user.password)
         
       session[:user_id] = user.id  
-      redirect_to( :controller => 'admin', :action => 'index' )     
+      redirect_to( :controller => 'pages', :action => 'index' )     
     end
     
   end

@@ -17,7 +17,6 @@ h1, h2, h3 {
 	color: #913c2f;
 	padding: 10px 25px 10px 80px;
 	font-family: Georgia, "Times New Roman", Times, serif;
-
 }
 
 h1 {
@@ -87,10 +86,10 @@ a:hover {
 }
 
 #home_title p {
-	padding: 30px 30px 70px 500px;
+	padding: 20px 30px 75px 500px;
 	text-align: right;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 17px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 19px;
 	font-style: italic;
 }
 
@@ -201,16 +200,45 @@ a:hover {
 
 }
 
-table {
-  padding: 0px 0px 0px 0px;
-  border: 0;
-  margin: 0;
-  text-align: left;
-	font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
+
+.list-line-even {
+  background:   #DCDCDC;
+  vertical-align: middle;
+}
+
+.list-line-odd {
+  background:   #BFBFBF;
+  vertical-align: middle;
+}
+
+#table_directories {
+  border: 10px solid #EEEEEE;
+  font-size: 14px;
   font-weight: bold;
   border-collapse: collapse;
   width: 550px;
+  background: #AAAAAA;
+}
+
+#table_files {
+  margin-left: 4px;
+  margin-right: 4px;
+  border: 2px solid #AAAAAA;
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: bold;
+  border-collapse: collapse;
+  width: 540px;
+}
+
+#table_files td {
+  padding-left: 1px;  
+}
+
+#table_files td a {
+  float: left;
+  padding-top: 3px;
+  
 }
 
 #files {
@@ -235,15 +263,6 @@ table {
 
 #rules a {
   color: #000000;
-}
-
-
-.list-line-even {
-  background:   #DCDCDC;
-}
-
-.list-line-odd {
-  background:   #BFBFBF;
 }
 
 
@@ -296,10 +315,10 @@ table {
 	display: inline;
 	float: right;
 	margin: 0px;
-	padding: 5px 15px 5px 15px;
+	padding: 5px 10px 5px 10px;
 	text-decoration: none;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: bold;
 	color: #000;
 }
@@ -339,10 +358,10 @@ table {
 	display: inline;
 	float: right;
 	margin: 0px;
-	padding: 5px 15px 5px 15px;
+	padding: 5px 10px 5px 10px;
 	text-decoration: none;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: bold;
 	color: #000;
 }
@@ -357,166 +376,3 @@ table {
 	padding: 5px 15px 5px 15px;
 }
 
-#page {
-	width: 920px;
-	margin: 0 auto;
-	padding: 0px 0px 0px 0px;
-	background: url(images/img04.jpg) repeat-y left top;
-}
-
-#page-bgtop {
-	background: url(images/img02.jpg) no-repeat left top;
-}
-
-#page-bgbtm {
-	padding: 20px 0px;
-	background: url(images/img03.jpg) no-repeat left bottom;
-}
-/* Content */
-
-#content {
-	float: left;
-	position: absolute;
-}
-
-.post {
-	margin-bottom: 40px;
-}
-
-.post .title {
-	padding: 0px 0px 0px 0px;
-	text-transform: lowercase;
-	font-family: Georgia, "Times New Roman", Times, serif;
-	letter-spacing: -.5px;
-}
-
-.post .title a {
-	color: #E44D32;
-	border: none;
-}
-
-.post .meta {
-	margin-bottom: 30px;
-	padding: 10px 0px 0px 0px;
-	text-align: left;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	font-weight: bold;
-}
-
-.post .meta .date {
-	float: left;
-}
-
-.post .meta .posted {
-	float: right;
-}
-
-.post .meta a {
-}
-
-.post .entry {
-	padding: 0px 0px 20px 0px;
-	border-bottom: 1px dotted #E7E2DC;
-	text-align: justify;
-}
-
-.links {
-	padding-top: 20px;
-	font-size: 12px;
-	font-weight: bold;
-}
-
-/* Sidebar */
-
-#sidebar {
-	float: left;
-	width: 310px;
-	margin: 0px;
-	padding: 0px 0px 0px 0px;
-	color: #787878;
-}
-
-#sidebar ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-#sidebar li {
-	margin: 0;
-	padding: 0;
-}
-
-#sidebar li ul {
-	margin: 0px 0px;
-	padding-bottom: 30px;
-}
-
-#sidebar li li {
-	line-height: 35px;
-	border-bottom: 1px dashed #C8B69B;
-	margin: 0px 30px;
-	border-left: none;
-}
-
-#sidebar li li span {
-	display: block;
-	margin-top: -20px;
-	padding: 0;
-	font-size: 11px;
-	font-style: italic;
-}
-
-#sidebar li li a {
-	color: #787878;
-}
-
-#sidebar li li a:hover {
-	color: #34312C;
-}
-
-#sidebar h2 {
-	height: 38px;
-	padding-left: 30px;
-	letter-spacing: -.5px;
-	font-size: 1.8em;
-}
-
-#sidebar p {
-	margin: 0 0px;
-	padding: 0px 30px 20px 30px;
-}
-
-#sidebar a {
-	border: none;
-}
-
-#sidebar a:hover {
-}
-
-
-
-/* Footer */
-
-#footder {
-	width: 920px;
-	height: 50px;
-	margin: 0 auto;
-	padding: 0px 0 15px 310px;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-#footder p {
-	margin: 0;
-	padding-top: 20px;
-	line-height: normal;
-	font-size: 9px;
-	text-transform: uppercase;
-	text-align: center;
-	color: #A0A0A0;
-}
-
-#fodoter a {
-	color: #8A8A8A;
-}

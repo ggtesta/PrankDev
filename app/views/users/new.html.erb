@@ -1,27 +1,60 @@
-<h1>New user</h1>
+  <div id="red_bar_title">
+    <h1>
+      <%= "Registro de usuário" %>
+    </h1>
+  </div>
 
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
+  <div id="body_write">
+  <div id="two-columns">
+    <div id="column1">
+        <h3>
+          Meu menu:
+        </h3>
+        <ul>
+			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Adicionar Arquivo", new_page_path %></li>
+			    <li><%= image_tag("icons/add-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Meus arquivos", pages_path %></li>
+			    <li><%= image_tag("icons/user-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Configurações de conta" %></li>
+			    <li><%= image_tag("icons/logout-icon.png", :border => 0, :size => "16x16" ) %>
+			      <%= link_to "Logout", :controller => 'admin', :action => 'logout' %></li>
+		    </ul>
+        
+     </div>
+     <div id="column2">
+      
+       <p>Textinho pa pa pa</p>
+       <div id="add_file">
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :user_password, 'Password' %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :user_password_confirmation, 'Confirm Password' %><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+        <% form_for(@user) do |f| %>
+          <%= f.error_messages %>
 
-<%= link_to 'Back', users_path %>
+          <p>
+            <%= f.label :name, "Nome" %><br />
+            <%= f.text_field :name %>
+          </p>
+          <p>
+            <%= f.label :username, "Nome de usuário" %><br />
+            <%= f.text_field :username %>
+          </p>
+          <p>
+            <%= f.label :user_password, "Senha" %><br />
+            <%= f.password_field :password %>
+          </p>
+          <p>
+            <%= f.label :user_password_confirmation, "Confirar senha" %><br />
+            <%= f.password_field :password_confirmation %>
+          </p>
+          <p>
+            <%= f.submit 'Registrar' %>
+          </p>
+        <% end %>
+
+        <p><%= image_tag("icons/back-icon.png", :border => 0, :size => "16x16" ) %>
+          <%= link_to 'Voltar', :controller => 'admin', :action => 'login' %></p>
+      </div>
+       </div>
+    </div>
+    </div>
+

@@ -3,6 +3,22 @@ class PagesController < ApplicationController
   # GET /pages
   def index
     @pages = Page.find_all_by_user_id(session[:user_id])
+    @directories = ["root"]
+    @pages.each { |page| 
+
+      new_path = page.file.path.split(page.user_id.to_s)[1]
+      splits = new_path.split("/");
+     
+      (@directories << splits[1]) if (splits.size == 3 && !@directories.include?(splits[1]))
+      (@directories << "#{splits[1]}/#{splits[2]}") if 
+        (splits.size == 4 && !@directories.include?("#{splits[1]}/#{splits[2]}"))
+      (@directories << "#{splits[1]}/#{splits[2]}/#{splits[3]}") if 
+        (splits.size == 5 && !@directories.include?("#{splits[1]}/#{splits[2]}/#{splits[3]}"))
+     
+    }
+    
+    @directories
+    @pages
 #    @pages = Page.all
   end
 
