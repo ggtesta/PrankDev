@@ -1,5 +1,4 @@
 class AdminController < ApplicationController
-  skip_before_filter :authorize, :only => [:instructions]
 
   def login
     @user = User.new
@@ -10,7 +9,7 @@ class AdminController < ApplicationController
         session[:user_id] = user.id
         redirect_to(:controller => "pages" , :action => "index" )
       else
-        flash.now[:notice] = "Invalid user/password combination"
+        flash.now[:notice] = "Usuário ou senha inválido!"
       end
     end
   end

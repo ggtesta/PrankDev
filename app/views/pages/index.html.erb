@@ -15,8 +15,27 @@
     </div>
     
     <div id="column2">
-      <div id="files">
+    
+       
+      <% if notice then %>
+        <% if notice.include?('sucesso') then %>
+         <div id="notice1">
+            <%= image_tag("icons/accept-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
+         </div>
+        <% else %>
+         <div id="notice">
+            <%= image_tag("icons/delete-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
+         </div>
+        <% end %>
+     <% end %>
+
+      <p>Bem vindo <b><%= @user.name %></b>! Este é o seu diretório atual:<p>
       
+       
+      <div id="files">
+   
         <table id="table_directories">
         
           <% @directories.each do |directory| %>

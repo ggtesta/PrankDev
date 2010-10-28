@@ -1,17 +1,13 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: #EFDABB url(/images/background.jpg) repeat left top;
+	background: #000000 url(/images/background.jpg) repeat left top;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	border: 0px auto;
 }
 
-img {
-  float: left;
-  padding: 3px 3px 0px 0px;
-}
-h1, h2, h3 {
+h1, h2 {
 	margin: 0;
 	font-weight: bold;
 	color: #913c2f;
@@ -27,11 +23,17 @@ h1 {
 
 h2 {
 	font-size: 1.5em;
+	padding-bottom: 20px;
 }
 
 h3 {
+  margin: 0;
 	font-size: 1.5em;
 	color: #000;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	padding: 7px 0px 7px 0px;
+	background: #DDDDDD;
+	font-style: italic;
 }
 
 p, ul, ol {
@@ -46,7 +48,7 @@ ul, ol {
 a {
 	text-decoration: none;
 	color: #913c2f;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 a:hover {
@@ -89,7 +91,7 @@ a:hover {
 }
 
 #home_title p {
-	padding: 20px 30px 75px 300px;
+	padding: 20px 30px 75px 500px;
 	text-align: right;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 19px;
@@ -101,10 +103,11 @@ a:hover {
 	padding: 0;
 	background: url(/images/body.jpg) repeat-y center;
 	width: 960;
+	height: auto;
 }
 
 #body_write p {
-	padding: 10px 35px 10px 80px;
+	padding: 10px 35px 0px 80px;
 	text-align: justify;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -120,39 +123,63 @@ a:hover {
 
 }
 
+
+
 #two-columns {
 	overflow: hidden;
 	width: 960px;
 	margin: 0px auto;
-	padding: 10px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 }
 
 #column1 {
 	float: right;
-	width: 290px;
+	width: 260px;	
+	padding: 0px 0px 0px 0px;
+
 }
 
 #column1 p {
-	padding: 5px 30px 5px 5px;
-	text-align: justify;
+	padding: 5px 10px 5px 10px;
+	text-align: left;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
+	font-size: 12px;
 	font-style: normal;
+	
+}
+
+#column1 ul {
+	padding: 10px 0px 10px 15px;
 }
 
 #column1 li {
-	padding: 0px 30px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	text-align: justify;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
   list-style: none;
 	font-weight: bold;
+
+}
+
+#column1 img, #column2 img {
+  float: left;
+  padding: 3px 3px 0px 0px;
+}
+
+#context_menu {
+  padding: 0px 0px 80px 0px;
+  background: #EEEEEE;
+  width: 210px;
+  text-align:center;
 }
 
 #column2 {
+  padding-top: 10px;
 	float: left;
 	width: 670px;
 }
+
+
 
 #red_bar_home {
 	margin: 0 auto;
@@ -167,14 +194,22 @@ a:hover {
 	padding: 5px 10px 15px 80px;
 	font-family: Arial, Helvetica, sans-serif;
 	color: #FFFFFF;
-	font-size: 11px;
+	font-size: 12px;
   font-weight: bold;
   width: 500px;
 }
 
+#red_bar_home a {
+
+	font-family: Arial, Helvetica, sans-serif;
+	color: #DD9999;
+	font-size: 12px;
+  font-weight: bold;
+}
+
 #home_login {
   float: right;
-  padding: 15px 50px 15px 80px;
+  padding: 12px 50px 15px 80px;
 	font-family: Arial, Helvetica, sans-serif;
 	color: #FFFFFF;
 	font-size: 13px;
@@ -194,10 +229,10 @@ a:hover {
 }
 
 #red_bar_title h1 {
-	padding: 12px 10px 15px 100px;
+	padding: 7px 10px 15px 100px;
 	text-align: justify;
 	color: #FFFFFF;
-	font-size: 30px;
+	font-size: 24px;
   font-weight: normal;
   font-style: italic;
 
@@ -354,7 +389,30 @@ a:hover {
 }
 
 
+#notice {
+  padding: 8px 20px 0px 20px;
+  margin-left: 100px;
+  width: 520px;
+  height: 20px;
+  background-color: #cb9684;
+  font-weight:bold;
+  
+}
 
+#notice1 {
+  padding: 8px 20px 0px 20px;
+  margin-left: 100px;
+  width: 520px;
+  height: 20px;
+  background-color: #aaccaa;
+  font-weight:bold;
+
+}
+
+#notice1 img, #notice img {
+  float:left;
+  padding-top: 0px;
+}
 
 #menu {
 	width: 960px;
@@ -395,3 +453,37 @@ a:hover {
 	padding: 5px 15px 5px 15px;
 }
 
+#templates_table {
+  padding: 15px 0px 15px 100px;
+}
+
+#templates {
+  border-collapse: collapse;
+  padding: 10px 10px 0px 10px;
+  margin: 0px;
+  border: 10px solid #CCCCCC;
+  width: 560px;
+}
+
+#templates td {
+  padding: 10px 10px 0px 10px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	
+}
+
+#templates img {
+  border: 2px solid #555555;
+  position: relative;
+  left: 7px;
+  padding: 0px;
+}
+
+.cell1 {
+  background: #EEEEEE;
+}
+.cell2 {
+  background: #DDDDDD;
+}

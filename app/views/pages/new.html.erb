@@ -9,10 +9,28 @@
     <div id="column1">
 
         <%= render :partial => "context_menu" %>
-        
+
      </div>
+     
+     
+ 
      <div id="column2">
-      
+     
+      <% if notice then %>
+        <% if notice.include?('sucesso') then %>
+         <div id="notice1">
+            <%= image_tag("icons/accept-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
+         </div>
+        <% else %>
+         <div id="notice">
+            <%= image_tag("icons/delete-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
+         </div>
+        <% end %>
+     <% end %>
+
+       
        <p>Textinho pa pa pa</p>
        <div id="add_file">
         <% form_for @page, :html => { :multipart => true } do |f| %>

@@ -1,6 +1,6 @@
   <div id="red_bar_title">
     <h1>
-      <%= "Editar Regras" %>
+      <%= "Regras" %>
     </h1>
   </div>
 
@@ -12,9 +12,15 @@
 
      </div>
      <div id="column2">
+     
+      <% if notice then %>
+         <div id="notice">
+           <%= image_tag("icons/delete-icon.png", :border => 0, :size => "16x16" ) %>
+           <%= notice %>
+         </div>
+       <% end %>
         
-      <h2><%= "for page #{@page.file.path}" %></h2>
-
+      <h2><%= "Regras para #{@page.file.path.split(@page.user_id.to_s)[1]}" %></h2>
      <div id="rules">
       <table id="table_rules">
         <tr>
@@ -31,8 +37,8 @@
             <%=h truncate(rule.css_selector, :length => 35) %></td>
 
           
-          <td width = "20"><%= link_to image_tag("icons/page-edit-icon.png", :border => 0, :size => "16x16"), 
-             rule %></td>
+          <td width = "20"><%= link_to image_tag("icons/info-icon.png", :border => 0, :size => "16x16"), 
+             rule, :page_id => @page.id %></td>
              
           <td width = "20"><%= link_to image_tag("icons/page-edit-icon.png", :border => 0, :size => "16x16"), 
              edit_rule_path(rule, :page_id => @page.id ) %></td>
@@ -45,7 +51,7 @@
       
      
      </div>
-         <p><%= image_tag("icons/back-icon.png", :border => 0, :size => "16x16" ) %>
+         <p id="back"><%= image_tag("icons/back-icon.png", :border => 0, :size => "16x16" ) %>
 			      <%= link_to "Voltar para minhas páginas", pages_path  %></p>
     </div>
     </div>

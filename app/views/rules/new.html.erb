@@ -12,6 +12,13 @@
 
      </div>
      <div id="column2">
+     
+       <% if notice then %>
+         <div id="notice1">
+           <%= image_tag("icons/accept-icon.png", :border => 0, :size => "16x16" ) %>
+           <%= notice %>
+         </div>
+       <% end %>
         
       <% form_for(@rule) do |f| %>
         <%= f.error_messages %>

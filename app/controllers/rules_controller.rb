@@ -9,22 +9,25 @@ class RulesController < ApplicationController
   # GET /rules/1
   def show
     @rule = Rule.find(params[:id])
+      @page = @rule.page.id
   end
 
   # GET /rules/new
   def new
     @rule = Rule.new
-    @page = Page.find(params[:page_id])
+    @page = @rule.page.id
   end
 
   # GET /rules/1/edit
   def edit
     @rule = Rule.find(params[:id])
+    @page = @rule.page.id
   end
 
   # POST /rules
   def create
     @rule = Rule.new(params[:rule])
+    @page = @rule.page.id
    
     if @rule.save
       flash[:notice] = "Regra com seletor '#{@rule.css_selector}' criada com sucesso."
@@ -37,11 +40,12 @@ class RulesController < ApplicationController
   # PUT /rules/1
   def update
     @rule = Rule.find(params[:id])
+    @page = @rule.page.id
     
     if @rule.update_attributes(params[:rule])
-      redirect_to(@rule, :notice => 'Rule was successfully updated.')
+      redirect_to(@rule, :notice => 'A regra foi atualizada com sucesso.')
     else
-      redirect_to(@rule, :action => "edit", :notice => 'Cannot update rule, please try again.')
+      redirect_to(@rule, :action => "edit", :notice => 'Não foi possível atualizar a regra, por favor, tente outra vez.')
     end
     
   end

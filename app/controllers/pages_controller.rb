@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_filter :authorize, :only => [:templates]
+  skip_before_filter :authorize, :only => [:templates, :instructions]
 
 
   # GET /pages
@@ -21,6 +21,7 @@ class PagesController < ApplicationController
     
     @directories
     @pages
+    @user = User.find(session[:user_id])
 #    @pages = Page.all
   end
 
@@ -46,7 +47,7 @@ class PagesController < ApplicationController
     @page = Page.new(params[:page])    
     @page.user_id = session[:user_id]
     
-    
+    if false then   
     if (@page.file_subpath.size > 1) && (@page.file_subpath[0] != '/') then
       @page.file_subpath = '/'.concat(@page.file_subpath)
     end
@@ -55,10 +56,6 @@ class PagesController < ApplicationController
       @page.file_subpath.chop!
     end
     if (@page.file_subpath == '/') then @page.file_subpath = '' end
-    
-   
-   
-   
    
     pieces = @page.file.path.split("/");
     pieces[pieces.size - 1] = "#{pieces.last.split(".")[0]}2.#{pieces.last.split(".")[1]}"
@@ -66,26 +63,14 @@ class PagesController < ApplicationController
     
     pieces.each { |piece| @page.alias.concat(piece + "/") }
     @page.alias.chop!
-
+    end
     
     
     if @page.save
-      flash[:notice] = "The file #{@page.file_file_name} was successfully uploaded."
+      flash[:notice] = "O arquivo #{@page.file_file_name} foi criado com sucesso."
       redirect_to(:action => 'new') 
     else
       render :action => "new" 
-    end
-    
-  end
-
-  # PUT /pages/1
-  def update
-    @page = Page.find(params[:id])
-
-    if @page.update_attributes(params[:page])
-      redirect_to(@page, :notice => 'Page was successfully updated.')
-    else
-        format.html { render :action => "edit" }
     end
     
   end
@@ -94,8 +79,53 @@ class PagesController < ApplicationController
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
-    flash[:notice] = "The file was succesfully deleted"
+    flash[:notice] = "O arquivo selecionado foi excluído."
     redirect_to(:action => 'index')
+  end
+  
+  def import
+  
+    Dir.entries("public/templates/abrasive").each { |e|
+      if (e != '.') && (e != '..') then
+      
+        if File.directory?("public/templates/abrasive/#{e}") then
+          Dir.entries("public/templates/abrasive/#{e}").each { |f|
+            puts "public/templates/abrasive/#{e}/#{f}"
+            page = Page.create(:file_subpath => e.to_s, :file => "public/templates/abrasive/#{e}/#{f}", :user_id => session[:user_id] )
+          }
+        else
+
+          page = Page.create(:file_subpath =>"", :file => "public/templates/abrasive/#{e}", :user_id => session[:user_id] )
+        end
+        puts page
+
+      end
+    }
+
+    
+    
+    
+#    file = File.open("public/templates")
+#    temp_string = ""
+#    file.each { |line| temp_string.concat(line.to_s) }
+##    file.close  
+    
+#    File.delete("app/templates/transform/index.html")
+    
+#    template = File.new("app/templates/transform/index.html","w")
+#    template.puts(temp_string)
+#    template.close
+    
+    
+#    base = @page.file.path.split(@page.user_id.to_s)[0] + @page.user_id.to_s
+#    file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
+##    file_name_without_ext = file_name.split('.')[0]  # /index
+#    file_extension = file_name.split('.')[1]         # html#
+
+
+    
+    redirect_to(:action => 'index')
+    
   end
   
   def templates

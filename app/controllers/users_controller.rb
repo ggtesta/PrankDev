@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      flash[:notice] = "User #{@user.username} was successfully created"
+      flash[:notice] = "Usuário #{@user.username} foi criado com sucesso."
       user = User.authenticate(@user.username, @user.password)
         
       session[:user_id] = user.id  
@@ -41,10 +41,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update_attributes(params[:user])
-      flash[:notice] = "User #{@user.username} was successfully updated."
+      flash[:notice] = "Usuário #{@user.username} atualizado com sucesso."
       redirect_to :action => 'index'
     else
-      flash[:notice] = "Cannot update user #{@user.username}. Try again."
+      flash[:notice] = "Não foi possível atualizar usuário #{@user.username}. Tente de novo."
       redirect_to :action => 'edit'
     end
   end

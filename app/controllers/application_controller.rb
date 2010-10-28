@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def authorize
     unless User.find_by_id(session[:user_id])
-      flash[:notice] = "Please log in"
+      flash[:notice] = "Por favor, faça login ou cadastre-se."
       redirect_to :controller => 'admin' , :action => 'login'
     end
   end

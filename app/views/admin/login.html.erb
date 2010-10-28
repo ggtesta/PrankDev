@@ -1,23 +1,17 @@
- <p>
-        Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
-      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
-      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
-      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
-      	Guigui bla bla bla bla asdf asdf asdf bla bla bla Guigui bla bla bla bla asdf asdf asdf bla bla bla
-</p>
+
 
 <div id ="home_login">
-
+<%= notice %><br><br>
   <% form_tag do %>
     
     <div>
       <label for="username">Usuário:</label><br>
-      <%= text_field_tag :username, params[:name], :size => '25' %>
+      <%= text_field_tag :username, "", :size => '25' %>
     </div>
     <br>
     <div>
       <label for="password">Senha:</label><br>
-      <%= password_field_tag :password, params[:password], :size => '25' %>
+      <%= password_field_tag :password, "", :size => '25' %>
     </div>
     <br>
     <div>
@@ -27,4 +21,13 @@
   <% end %>
 </div>
 
-
+ <p>
+        Seja bem-vindo ao PrankDev!
+ </p>
+ <p>
+        PrankDev é um serviço de criação e manutenção de páginas web baseado em templates. 
+        Assim você pode manter sua página na Internet de maneira fácil e simples. 
+ </p>
+  <p>
+        Para maiores informações, acesse a <%= link_to "página de instruções", :controller => "pages", :action => "instructions" %>.
+ </p>
