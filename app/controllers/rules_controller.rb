@@ -15,7 +15,7 @@ class RulesController < ApplicationController
   # GET /rules/new
   def new
     @rule = Rule.new
-    @page = @rule.page.id
+    @page = Page.find(params[:page_id])
   end
 
   # GET /rules/1/edit
@@ -27,7 +27,7 @@ class RulesController < ApplicationController
   # POST /rules
   def create
     @rule = Rule.new(params[:rule])
-    @page = @rule.page.id
+
    
     if @rule.save
       flash[:notice] = "Regra com seletor '#{@rule.css_selector}' criada com sucesso."

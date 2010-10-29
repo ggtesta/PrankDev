@@ -47,7 +47,7 @@ class PagesController < ApplicationController
     @page = Page.new(params[:page])    
     @page.user_id = session[:user_id]
     
-    if false then   
+    
     if (@page.file_subpath.size > 1) && (@page.file_subpath[0] != '/') then
       @page.file_subpath = '/'.concat(@page.file_subpath)
     end
@@ -63,7 +63,7 @@ class PagesController < ApplicationController
     
     pieces.each { |piece| @page.alias.concat(piece + "/") }
     @page.alias.chop!
-    end
+    
     
     
     if @page.save
@@ -85,22 +85,22 @@ class PagesController < ApplicationController
   
   def import
   
-    Dir.entries("public/templates/abrasive").each { |e|
-      if (e != '.') && (e != '..') then
+ #   Dir.entries("public/templates/abrasive").each { |e|
+ #     if (e != '.') && (e != '..') then
       
-        if File.directory?("public/templates/abrasive/#{e}") then
-          Dir.entries("public/templates/abrasive/#{e}").each { |f|
-            puts "public/templates/abrasive/#{e}/#{f}"
-            page = Page.create(:file_subpath => e.to_s, :file => "public/templates/abrasive/#{e}/#{f}", :user_id => session[:user_id] )
-          }
-        else
+ #       if File.directory?("public/templates/abrasive/#{e}") then
+ #         Dir.entries("public/templates/abrasive/#{e}").each { |f|
+ #           puts "public/templates/abrasive/#{e}/#{f}"
+ #           page = Page.create(:file_subpath => e.to_s, :file => "public/templates/abrasive/#{e}/#{f}", :user_id => session[:user_id] )
+ #         }
+ #       else
 
-          page = Page.create(:file_subpath =>"", :file => "public/templates/abrasive/#{e}", :user_id => session[:user_id] )
-        end
-        puts page
+ #         page = Page.create(:file_subpath =>"", :file => "public/templates/abrasive/#{e}", :user_id => session[:user_id] )
+ #       end
+ #       puts page
 
-      end
-    }
+ #     end
+ #   }
 
     
     

@@ -8,7 +8,7 @@ class TransformIndexView < Effigy::Rails::View
   def transform 
     
     file = File.open(@page.file.path)
-    temp_string = ""
+    temp_string = ""  
     file.each { |line| temp_string.concat(line.to_s) }
     file.close  
     
