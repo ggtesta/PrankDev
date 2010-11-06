@@ -66,7 +66,20 @@ class PagesController < ApplicationController
     
     
     
+    
+    
     if @page.save
+      if @page.file_content_type == "text/html" then
+        file = File.open(@page.file.path)
+        temp_string = ""  
+        file.each { |line| temp_string.concat(line.to_s) }
+        file.close  
+        
+        alt_file = File.new(@page.alias.split("PrankDev/")[1],"w")
+        alt_file.puts(temp_string)
+        alt_file.close
+      end
+    
       flash[:notice] = "O arquivo #{@page.file_file_name} foi criado com sucesso."
       redirect_to(:action => 'new') 
     else
@@ -80,6 +93,35 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     @page.destroy
     flash[:notice] = "O arquivo selecionado foi excluído."
+    redirect_to(:action => 'index')
+  end
+  
+  def reset
+    @page = Page.find(params[:id])
+    
+    template = File.open(@page.alias.split("PrankDev/")[1])
+    temp_string = ""  
+    template.each { |line| temp_string.concat(line.to_s) }
+    template.close  
+    
+    puts temp_string
+    
+    puts @page.file.path
+    puts File.exists?(@page.file.path)
+       
+    File.delete(@page.file.path.split("PrankDev/")[1])
+   
+    file = File.new(@page.file.path.split("PrankDev/")[1],"w")
+    file.puts(temp_string)
+    file.close
+    
+    
+    Rule.find_all_by_page_id(@page.id).each { |rule|
+      rule.destroy
+    }
+    
+    
+    flash[:notice] = "Seu template foi atualizado com sucesso."
     redirect_to(:action => 'index')
   end
   

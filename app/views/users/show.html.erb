@@ -1,7 +1,7 @@
 
   <div id="red_bar_title">
     <h1>
-      <%= "Nova Regra" %>
+      <%= "Configurações da conta" %>
     </h1>
   </div>
 
@@ -13,17 +13,55 @@
 
      </div>
      <div id="column2">
-        
+     
+      <% if notice then %>
+        <% if notice.include?('sucesso') then %>
+         <div id="notice1">
+            <%= image_tag("icons/accept-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
+         </div>
+        <% else %>
+         <div id="notice">
+            <%= image_tag("icons/delete-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
+         </div>
+        <% end %>
+     <% end %>
+      
+      <% pages = Page.find_all_by_user_id(@user.id) %>
+      <% count = 0
+         pages.each { |page| 
+           if page.file_content_type == "text/html" then
+             count = count + 1;
+           end
+         } %>
+      <% if pages.size != 0 then
+          rules = Rule.find_all_by_page_id(pages[0].id).size 
+        else rules = 0;
+        end %>
       <p>
-        <b>Nome:</b>
+        Você possui <b><%= pages.size %></b> páginas, das quais <b><%= count %></b> 
+        são arquivos html editáveis, com <b><%= rules %></b> regras aplicadas sobre elas.
+      </p>
+        <br>
+      <p>
+        <b>Seu nome:</b>
         <%=h @user.name %>
       </p>
 
       <p>
-        <b>Usuário:</b>
+        <b>Seu nome de usuário:</b>
         <%=h @user.username %>
       </p>
+      
+      <br>
 
+      <p><%= image_tag("icons/user-icon.png", :border => 0, :size => "16x16" ) %>
+           <%= link_to "Atualizar dados do usuário", edit_user_path(@user)  %><br>
+         <%= image_tag("icons/delete-icon.png", :border => 0, :size => "16x16" ) %>
+           <%= link_to "Excluir minha conta", @user, :confirm => 'Tem certeza que deseja excluir sua conta?', 
+           :method => :delete, :title => "Deletar regra" %> </p>
+      <br>
 
          <p><%= image_tag("icons/back-icon.png", :border => 0, :size => "16x16" ) %>
 			      <%= link_to "Voltar para minha página", pages_path %></p>

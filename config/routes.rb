@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.templates  '/templates', :controller => 'pages', :action => 'templates'
   map.login  '/login', :controller => 'admin', :action => 'login'
   map.logout '/logout', :controller => 'admin', :action => 'logout'
+#  map.reset 'reset', :controller => 'pages', :action => 'reset'
   
   # The priority is based upon order of creation: first created -> highest priority.
 

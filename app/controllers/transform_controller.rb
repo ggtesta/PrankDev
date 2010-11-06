@@ -6,8 +6,10 @@ class TransformController < ApplicationController
   def index
     @page = Page.find(params[:page_id])
     @rules = Rule.find_all_by_page_id(@page.id)
+    @adress = params[:adress]
   
     base = @page.file.path.split(@page.user_id.to_s)[0] + @page.user_id.to_s
+    
     
 #    file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
 #    file_name_without_ext = file_name.split('.')[0]  # /index

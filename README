@@ -14,11 +14,6 @@ Pra testar:
   
 TODO list:
 
-#   Modificar index.html.effigy para aceitar o template dado através do 
-    caminho @page.file.path
-
-#   Eliminar opção 'newItemList' por clone
-
 #   Melhorar opção 'clone', permitindo troca de texto e adição de link,
     utilizando STRUCTURAL_TAGS e FORMATTING_TAGS
     

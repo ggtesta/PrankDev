@@ -173,6 +173,12 @@ a:hover {
   text-align:center;
 }
 
+#context_menu li p {
+  padding: 2px 4px 5px 20px;
+  font-weight: normal;
+  font-size: 90%;
+}
+
 #column2 {
   padding-top: 10px;
 	float: left;
@@ -489,10 +495,6 @@ a:hover {
 }
 
 #new_rule {
-  width: 300px;
-  height:  600px;
-  background: #FFFFFF;
-  position: fixed;
   padding: 10px 10px 10px 10px;
 }
 

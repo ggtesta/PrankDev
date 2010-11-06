@@ -1,28 +1,75 @@
-<h1>Editing user</h1>
 
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
+  <div id="red_bar_title">
+    <h1>
+      <%= "Editar conta" %>
+    </h1>
+  </div>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :user_password, 'Password' %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :user_password_confirmation, 'Confirm Password' %><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+  <div id="body_write">
+  <div id="two-columns">
+    <div id="column1">
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+        <%= render :partial => "context_menu" %>
+
+     </div>
+     
+     
+ 
+     <div id="column2">
+     
+      <% if notice then %>
+        <% if notice.include?('sucesso') then %>
+         <div id="notice1">
+            <%= image_tag("icons/accept-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
+         </div>
+        <% else %>
+         <div id="notice">
+            <%= image_tag("icons/delete-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
+         </div>
+        <% end %>
+     <% end %>
+
+       
+       <p>Textinho pa pa pa</p>
+       <div id="add_file">
+        
+        <% form_for(@user) do |f| %>
+          <%= f.error_messages %>
+
+          <p>
+            <%= f.label :name, 'Nome: ' %><br />
+            <%= f.text_field :name %>
+          </p>
+          <p>
+            <%= f.label :username, 'Username ' %><br />
+            <%= f.text_field :username %>
+          </p>
+          
+          <p>
+            <%= label :this, 'Senha atual' %><br />
+            <%= password_field :this, "" %>
+          </p>
+          
+          <p>
+            <%= f.label :user_password, 'Senha' %><br />
+            <%= f.password_field :password %>
+          </p>
+          <p>
+            <%= f.label :user_password_confirmation, 'Confirmação da senha' %><br />
+            <%= f.password_field :password_confirmation %>
+          </p>
+          <p>
+            <%= f.submit 'Atualizar' %>
+          </p>
+        <% end %>
+        
+        <p><%= image_tag("icons/back-icon.png", :border => 0, :size => "16x16" ) %>
+          <%= link_to 'Voltar', :controller => 'users', :action => 'show'  %></p>
+          
+      </div>
+       </div>
+    </div>
+    </div>
+

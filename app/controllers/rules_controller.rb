@@ -22,7 +22,7 @@ class RulesController < ApplicationController
   def edit
     @rule = Rule.find(params[:id])
     @page = @rule.page.id
-    redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
+ #   redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
   end
 
   # POST /rules
@@ -32,7 +32,8 @@ class RulesController < ApplicationController
    
     if @rule.save
       flash[:notice] = "Regra com seletor '#{@rule.css_selector}' criada com sucesso."
-      redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
+      redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id, 
+        :adress => "rules/new?page_id=#{@rule.page_id}" )
     else
       render :action => "new"
     end
@@ -44,7 +45,9 @@ class RulesController < ApplicationController
     @page = @rule.page.id
     
     if @rule.update_attributes(params[:rule])
-      redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
+      flash[:notice] = "A regra com seletor '#{@rule.css_selector}' foi atualizada com sucesso."
+      redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id,
+      :adress => "rules?page_id=#{@rule.page_id}" )
  #     redirect_to(@rule, :notice => 'A regra foi atualizada com sucesso.')
     else
       redirect_to(@rule, :action => "edit", :notice => 'Não foi possível atualizar a regra, por favor, tente outra vez.')
@@ -58,7 +61,9 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
     page_id = @rule.page.id
     @rule.destroy
-    redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
+    flash[:notice] = "A regra selecionada foi excluída."
+    redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id,
+      :adress => "rules?page_id=#{@rule.page_id}" ) 
 #    redirect_to(rules_url(:page_id => page_id.to_s )) 
   end
   

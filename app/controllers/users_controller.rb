@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
       flash[:notice] = "Usuário #{@user.username} atualizado com sucesso."
-      redirect_to :action => 'index'
+      redirect_to :action => 'show'
     else
       flash[:notice] = "Não foi possível atualizar usuário #{@user.username}. Tente de novo."
       redirect_to :action => 'edit'

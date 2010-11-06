@@ -9,16 +9,23 @@
     <div id="column1">
         
         <%= render :partial => "context_menu" %>
-
+ 
      </div>
      <div id="column2">
      
       <% if notice then %>
-         <div id="notice">
-           <%= image_tag("icons/delete-icon.png", :border => 0, :size => "16x16" ) %>
-           <%= notice %>
+        <% if notice.include?('sucesso') then %>
+         <div id="notice1">
+            <%= image_tag("icons/accept-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
          </div>
-       <% end %>
+        <% else %>
+         <div id="notice">
+            <%= image_tag("icons/delete-icon.png", :border => 0, :size => "16x16" ) %>
+            <%= notice %>
+         </div>
+        <% end %>
+     <% end %>
         
       <h2><%= "Regras para #{@page.file.path.split(@page.user_id.to_s)[1]}" %></h2>
      <div id="rules">

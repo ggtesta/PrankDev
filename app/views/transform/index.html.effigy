@@ -5,8 +5,8 @@ class TransformIndexView < Effigy::Rails::View
   #metodo que sobrescreve Effigy::View::transform e aplica as regras ao template
   #TODO: limpar arquivos temporários  
   # transformar página após cada regra nova.
-  def transform 
-    
+  def transform
+       
     file = File.open(@page.file.path)
     temp_string = ""  
     file.each { |line| temp_string.concat(line.to_s) }
@@ -80,17 +80,17 @@ class TransformIndexView < Effigy::Rails::View
       yield if block_given?
       transform
       
-    
       file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
       file_name_without_ext = file_name.split('.')[0]  # /index
       file_extension = file_name.split('.')[1]         # html
+      
       
       # retorno:
        "<script language=\"JavaScript\">
       <!--St
         var time = null
         function move() {
-        window.location = 'rules/new?page_id=#{@page.id}'
+        window.location = '#{@adress}'
       }
       //-->
       </script>
