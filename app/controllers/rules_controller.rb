@@ -9,7 +9,7 @@ class RulesController < ApplicationController
   # GET /rules/1
   def show
     @rule = Rule.find(params[:id])
-      @page = @rule.page.id
+    @page = @rule.page.id
   end
 
   # GET /rules/new
@@ -22,6 +22,7 @@ class RulesController < ApplicationController
   def edit
     @rule = Rule.find(params[:id])
     @page = @rule.page.id
+    redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
   end
 
   # POST /rules
@@ -43,7 +44,8 @@ class RulesController < ApplicationController
     @page = @rule.page.id
     
     if @rule.update_attributes(params[:rule])
-      redirect_to(@rule, :notice => 'A regra foi atualizada com sucesso.')
+      redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
+ #     redirect_to(@rule, :notice => 'A regra foi atualizada com sucesso.')
     else
       redirect_to(@rule, :action => "edit", :notice => 'Não foi possível atualizar a regra, por favor, tente outra vez.')
     end
@@ -56,7 +58,8 @@ class RulesController < ApplicationController
     @rule = Rule.find(params[:id])
     page_id = @rule.page.id
     @rule.destroy
-    redirect_to(rules_url(:page_id => page_id.to_s )) 
+    redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
+#    redirect_to(rules_url(:page_id => page_id.to_s )) 
   end
   
 end

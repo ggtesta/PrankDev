@@ -487,3 +487,13 @@ a:hover {
 .cell2 {
   background: #DDDDDD;
 }
+
+#new_rule {
+  width: 300px;
+  height:  600px;
+  background: #FFFFFF;
+  position: fixed;
+  padding: 10px 10px 10px 10px;
+}
+
+
