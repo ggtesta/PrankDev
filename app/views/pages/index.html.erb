@@ -72,13 +72,16 @@
                 
         <% if (page.file_content_type == "text/html") then %>
           <td width = "20"> <%= link_to image_tag("icons/accept-icon.png", :border => 0, :size => "16x16"), 
-             page.alias.split('public')[1], {:title => "Ver arquivo modificado", :target => "_blank" } %>  </td>                              
+             page.alias.split('public')[1], {:title => "Ver arquivo modificado", :target => "_blank" } %>  
+          </td>                              
              
           <td width = "20"><%= link_to image_tag("icons/tickets-icon.png", :border => 0, :size => "16x16"), 
-             {:controller => :rules, :action => :index, :page_id => page.id}, {:title => "Editar Regras"}  %></td>
+             {:controller => :rules, :action => :index, :page_id => page.id}, {:title => "Editar Regras"}  %>
+          </td>
              
           <td width = "20"><%= link_to image_tag("icons/window-icon.png", :border => 0, :size => "16x16"), 
-             {:controller => "pages", :id => page.id, :action => "reset" }, {:title => "Atualizar template"}  %></td>
+             {:controller => "pages", :id => page.id, :action => "reset" }, {:title => "Atualizar template"}  %>
+          </td>
              
         <% else %>
           <td width = "20">

@@ -28,6 +28,12 @@
      <% end %>
         
       <h2><%= "Regras para #{@page.file.path.split(@page.user_id.to_s)[1]}" %></h2>
+      <p>
+        A tabela abaixo mostra todas as regras que estão sendo aplicadas ao arquivo 
+        <%= @page.file.path.split(@page.user_id.to_s)[1] %>. Você pode incorporar estas regras ao template na página de seu diretório.
+      </p>
+     
+      <br />
      <div id="rules">
       <table id="table_rules">
         <tr>

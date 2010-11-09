@@ -15,14 +15,14 @@
      </div>
      <div id="column2">
       
-       <p>Textinho pa pa pa</p>
+       <p>Complete este pequeno registro para usufruir dos serviços oferecidos pelo PrankDev.</p>
        <div id="add_file">
 
         <% form_for(@user) do |f| %>
           <%= f.error_messages %>
 
           <p>
-            <%= f.label :name, "Nome" %><br />
+            <%= f.label :name, "Nome Completo" %><br />
             <%= f.text_field :name %>
           </p>
           <p>
@@ -34,7 +34,7 @@
             <%= f.password_field :password %>
           </p>
           <p>
-            <%= f.label :user_password_confirmation, "Confirar senha" %><br />
+            <%= f.label :user_password_confirmation, "Confirmar senha" %><br />
             <%= f.password_field :password_confirmation %>
           </p>
           <p>

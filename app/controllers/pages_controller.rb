@@ -34,7 +34,22 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
- #  @page.user_id = session[:user_id].to_s
+    
+    @directories = ["root"]
+    Page.find_all_by_user_id(session[:user_id]).each { |page| 
+
+      new_path = page.file.path.split(page.user_id.to_s)[1]
+      splits = new_path.split("/");
+     
+      (@directories << splits[1]) if (splits.size == 3 && !@directories.include?(splits[1]))
+      (@directories << "#{splits[1]}/#{splits[2]}") if 
+        (splits.size == 4 && !@directories.include?("#{splits[1]}/#{splits[2]}"))
+      (@directories << "#{splits[1]}/#{splits[2]}/#{splits[3]}") if 
+        (splits.size == 5 && !@directories.include?("#{splits[1]}/#{splits[2]}/#{splits[3]}"))
+     
+    }
+    
+    
   end
 
   # GET /pages/1/edit
@@ -44,28 +59,49 @@ class PagesController < ApplicationController
 
   # POST /pages
   def create
+  
     @page = Page.new(params[:page])    
     @page.user_id = session[:user_id]
     
+    puts params[:file_subpath]
+    puts params[:page][:new_subpath]
+        
+    if params[:page][:new_subpath] == "" then
+      puts "1"
+    
+      if params[:file_subpath].nil? then
+        puts "2"
+        @page.file_subpath = ""
+      else
+        puts "3"
+        @page.file_subpath = params[:file_subpath]
+      end
+      
+    else
+      puts "4"
+      @page.file_subpath = params[:page][:new_subpath]
+    end
+      
+    puts @page.file_subpath
     
     if (@page.file_subpath.size > 1) && (@page.file_subpath[0] != '/') then
       @page.file_subpath = '/'.concat(@page.file_subpath)
     end
-    
+      
     if @page.file_subpath[@page.file_subpath.size-1] == '/' then
       @page.file_subpath.chop!
     end
+ 
     if (@page.file_subpath == '/') then @page.file_subpath = '' end
-   
+     
     pieces = @page.file.path.split("/");
     pieces[pieces.size - 1] = "#{pieces.last.split(".")[0]}2.#{pieces.last.split(".")[1]}"
     @page.alias = ""
     
     pieces.each { |piece| @page.alias.concat(piece + "/") }
     @page.alias.chop!
-    
-    
-    
+      
+        
     
     
     if @page.save

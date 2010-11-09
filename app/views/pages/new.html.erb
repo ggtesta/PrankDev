@@ -31,7 +31,7 @@
      <% end %>
 
        
-       <p>Textinho pa pa pa</p>
+       <p>Os arquivos adicionados aqui estarão disponíveis no seu diretório. </p>
        <div id="add_file">
         <% form_for @page, :html => { :multipart => true } do |f| %>
           <%= f.error_messages %>
@@ -39,10 +39,24 @@
             <%= f.label :file, "Arquivo: " %><br>
             <%= f.file_field :file %>
           </p>
+          
           <p>
-            <%= f.label :file_subpath, "Salvar em: " %><br>
-            <%= f.text_field :file_subpath, :value => '' %>
+            <% %><label for="directory">Pastas existentes:</label>
+            <% @directories.each do |directory| %>
+              <% if directory != 'root' then %>
+                <br><%= radio_button_tag 'file_subpath', directory %>
+                <%= directory %>
+              <% end %>
+            <% end %>
+          </p>         
+          
+          
+          
+          <p>
+            <%= f.label :new_subpath, "Criar diretório: " %><br>
+            <%= f.text_field :new_subpath, :value => '' %>
           </p>
+          
           <p>
             <%= f.submit 'Adicionar' %>
           </p>
