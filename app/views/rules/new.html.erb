@@ -19,27 +19,39 @@
            <%= notice %>
          </div>
        <% end %>
+       
+       
+       
+      <p>
+        Você deve utilizar este formulário em conjunto com o template aberto, 
+        utilizando o SelectorGadget para selecionar os elementos desejados.
+      </p>
+      <p>
+        Se tiver dúvidas sobre o modo como as regras modificam seu template, 
+        consulte o <%= link_to "manual de uso" %>.
+      </p>
         
       <% form_for(@rule) do |f| %>
         <%= f.error_messages %>
 
         <p>
-          <%= f.label :css_selector, "Seletor CSS" %><br />
+          <b><%= f.label :css_selector, "Seletor CSS" %></b><br />
           <%= f.text_field :css_selector, :size => "35" %>
         </p>
         <p>
-          <%= f.label :text, "Novo texto" %><br />
+          <b><%= f.label :text, "Novo texto" %></b><br />
           <%= f.text_area :text, :size => "40x5" %>
         </p>
         <p>
-          <%= f.label :value, "Link" %><br />
+          <b><%= f.label :value, "Link" %></b><br />
           <%= f.text_field :value, :size => "35" %>
         </p>
         <p>
-          <%= f.label :option, "Opções" %>
+          <b><%= f.label :option, "Opções" %></b>
           <%= f.select :option, Rule::OPTIONS, :prompt => 'Escolha uma opção' %>
         </p>
           <%= f.hidden_field(:page_id, :value => @page.id) %>
+          <br>
         <p>
           <%= f.submit 'Criar regra' %>
         </p>
