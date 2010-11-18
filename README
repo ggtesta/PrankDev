@@ -6,20 +6,6 @@ Rails     2.3.8
 Effigy    http://github.com/jferris/effigy.git
 Paperclip http://github.com/thoughtbot/paperclip.git
 
-
-Pra testar:
-  Username: admin
-  password: admin
   
   
-TODO list:
 
-#   Melhorar opção 'clone', permitindo troca de texto e adição de link,
-    utilizando STRUCTURAL_TAGS e FORMATTING_TAGS
-    
-#   Integrar o SelectorGadget
-
-#   Modelar classe File, para ser utilizada com outros arquivos (imagens, css, etc),
-    deixando Page somente para arquivos HTML.
-
-#   Criar classe File e setar Page como subclasse para arquivos HTML

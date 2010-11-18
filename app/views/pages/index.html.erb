@@ -80,7 +80,7 @@
           </td>
              
           <td width = "20"><%= link_to image_tag("icons/window-icon.png", :border => 0, :size => "16x16"), 
-             {:controller => "pages", :id => page.id, :action => "reset" }, {:title => "Atualizar template"}  %>
+             {:controller => "pages", :id => page.id, :action => "reset" }, {:confirm => 'Deseja atualizar o arquivo selecionado?', :title => "Atualizar template"}  %>
           </td>
              
         <% else %>

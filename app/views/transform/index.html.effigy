@@ -11,7 +11,7 @@ class TransformIndexView < Effigy::Rails::View
     temp_string = ""  
     file.each { |line| temp_string.concat(line.to_s) }
     file.close  
-    
+     
     File.delete("app/templates/transform/index.html")
     
     template = File.new("app/templates/transform/index.html","w")
@@ -121,16 +121,20 @@ class TransformIndexView < Effigy::Rails::View
           insert_content(new_node, new_text)
         end
         
-        node.after(new_node)
-       
+
+
         # verifica se o nodo filho é do tipo a para inserir correspondente link 
         if (node.child.name != 'a') && (!value.nil?) then
-           new_node.add_previous_sibling("\<a href=\"#{value}\"\>")
+          insert_content(new_node, "")
+          a_node = Nokogiri::XML::Node.new('a', node)
+          a_node['href'] = value
+          a_node.content = new_text
 
+          new_node.add_child(a_node)
         else
           new_node.child.set_attribute("href", value)
         end
-          
+                  node.after(new_node)
         
       elsif Rule::FORMATTING_TAGS.include?(node.name) then
         
