@@ -67,22 +67,17 @@ class PagesController < ApplicationController
     puts params[:page][:new_subpath]
         
     if params[:page][:new_subpath] == "" then
-      puts "1"
     
       if params[:file_subpath].nil? then
-        puts "2"
         @page.file_subpath = ""
       else
-        puts "3"
         @page.file_subpath = params[:file_subpath]
       end
       
     else
-      puts "4"
       @page.file_subpath = params[:page][:new_subpath]
     end
       
-    puts @page.file_subpath
     
     if (@page.file_subpath.size > 1) && (@page.file_subpath[0] != '/') then
       @page.file_subpath = '/'.concat(@page.file_subpath)
@@ -163,43 +158,71 @@ class PagesController < ApplicationController
   
   def import
   
- #   Dir.entries("public/templates/abrasive").each { |e|
- #     if (e != '.') && (e != '..') then
+  case params[:template_id]
+    when "1" then temp_directory = "public/templates/binary-news"
+    when "2" then temp_directory = "public/templates/condition"
+    when "3" then temp_directory = "public/templates/grey-blog"
+    when "4" then temp_directory = "public/templates/widget"
+    when "5" then temp_directory = "public/templates/astroturfd"
+    when "6" then temp_directory = "public/templates/yosemite"
+    when "7" then temp_directory = "public/templates/terrafirma"
+    when "8" then temp_directory = "public/templates/earth"
+    when "9" then temp_directory = "public/templates/abrasive"
+  end
+
+    
+  
+  
+   Dir.entries(temp_directory).each { |e|
+     if (e != '.') && (e != '..') then
       
- #       if File.directory?("public/templates/abrasive/#{e}") then
- #         Dir.entries("public/templates/abrasive/#{e}").each { |f|
- #           puts "public/templates/abrasive/#{e}/#{f}"
- #           page = Page.create(:file_subpath => e.to_s, :file => "public/templates/abrasive/#{e}/#{f}", :user_id => session[:user_id] )
- #         }
- #       else
+       if File.directory?("#{temp_directory}/#{e}") then
+       
+         Dir.entries("#{temp_directory}/#{e}").each { |f|
+           if (f != '.') && (f != '..') then
+             file = File.open("#{temp_directory}/#{e}/#{f}")
 
- #         page = Page.create(:file_subpath =>"", :file => "public/templates/abrasive/#{e}", :user_id => session[:user_id] )
- #       end
- #       puts page
+             page = Page.new
+             page.file_subpath = "/" + e.to_s
+             page.file = file
+             page.user_id = session[:user_id]
+            
+             pieces = page.file.path.split("/");
+             pieces[pieces.size - 1] = "#{pieces.last.split(".")[0]}2.#{pieces.last.split(".")[1]}"
+             page.alias = ""
+    
+             pieces.each { |piece| page.alias.concat(piece + "/") }
+             page.alias.chop!
+            
+             page.save
+             file.close
 
- #     end
- #   }
+           end
+         }
+       else
+         file = File.open("#{temp_directory}/#{e}")
 
-    
-    
-    
-#    file = File.open("public/templates")
-#    temp_string = ""
-#    file.each { |line| temp_string.concat(line.to_s) }
-##    file.close  
-    
-#    File.delete("app/templates/transform/index.html")
-    
-#    template = File.new("app/templates/transform/index.html","w")
-#    template.puts(temp_string)
-#    template.close
-    
-    
-#    base = @page.file.path.split(@page.user_id.to_s)[0] + @page.user_id.to_s
-#    file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
-##    file_name_without_ext = file_name.split('.')[0]  # /index
-#    file_extension = file_name.split('.')[1]         # html#
+         page = Page.new
+       
+         page.file_subpath = "" 
+         page.file = file
+         page.user_id = session[:user_id]
+         
+         pieces = page.file.path.split("/");
+         pieces[pieces.size - 1] = "#{pieces.last.split(".")[0]}2.#{pieces.last.split(".")[1]}"
+         page.alias = ""
+         pieces.each { |piece| page.alias.concat(piece + "/") }
+         page.alias.chop!
+         
+         page.save
+         file.close
 
+
+       end
+       
+
+     end
+   }
 
     
     redirect_to(:action => 'index')
