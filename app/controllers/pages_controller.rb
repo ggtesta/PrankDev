@@ -180,7 +180,7 @@ class PagesController < ApplicationController
        
          Dir.entries("#{temp_directory}/#{e}").each { |f|
            if (f != '.') && (f != '..') then
-             file = File.open("#{temp_directory}/#{e}/#{f}")
+             file = File.open("#{temp_directory}/#{e}/#{f}") 
 
              page = Page.new
              page.file_subpath = "/" + e.to_s
@@ -193,10 +193,19 @@ class PagesController < ApplicationController
     
              pieces.each { |piece| page.alias.concat(piece + "/") }
              page.alias.chop!
-            
-             page.save
              file.close
-
+             
+             page.save
+             if page.file_content_type == "text/html" then
+               file = File.open(page.file.path)
+               temp_string = ""  
+               file.each { |line| temp_string.concat(line.to_s) }
+               file.close  
+        
+               alt_file = File.new(page.alias.split("PrankDev/")[1],"w")
+               alt_file.puts(temp_string)
+               alt_file.close
+             end
            end
          }
        else
@@ -214,15 +223,27 @@ class PagesController < ApplicationController
          pieces.each { |piece| page.alias.concat(piece + "/") }
          page.alias.chop!
          
-         page.save
          file.close
+         
+         page.save
+         if page.file_content_type == "text/html" then
+           file = File.open(page.file.path)
+           temp_string = ""  
+           file.each { |line| temp_string.concat(line.to_s) }
+           file.close  
+       
+           alt_file = File.new(page.alias.split("PrankDev/")[1],"w")
+           alt_file.puts(temp_string)
+           alt_file.close
+         end
+         
 
 
        end
        
 
      end
-   }
+   } 
 
     
     redirect_to(:action => 'index')

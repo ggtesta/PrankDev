@@ -31,12 +31,11 @@ class TransformIndexView < Effigy::Rails::View
     out = File.new(base + file_name_without_ext + '2.' + file_extension, "w+")
     
     @rules.each do |rule|                       # itera sobre as regras
-      
       result = case rule.option
         # clona qualquer elemento selecionado... tá capenga  
         when 'clone' then 
           rule.css_selector.split(',').each { |one_selector|
-            clone(normalize_rule(one_selector), rule.value, rule.text)
+            clone(normalize_rule(one_selector), rule.value, rule.text) 
           }
         # substitui uma imagemS
         when 'image' then

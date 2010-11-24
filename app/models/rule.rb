@@ -2,8 +2,8 @@ class Rule < ActiveRecord::Base
   belongs_to :page
   
   OPTIONS = [
-    [ "Clone Item", "clone" ],
-    [ "Image",      "image" ]
+    [ "Duplicar item",              "clone" ],
+    [ "Substituir por imagem",      "image" ]
   ]
 
   # TODO: Completar lista
