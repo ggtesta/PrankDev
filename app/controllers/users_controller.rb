@@ -5,21 +5,25 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.find(:all, :order => :username)
+    @menu = 3
   end
 
   # GET /users/1
   def show
     @user = User.find(session[:user_id])
+    @menu = 2
   end
 
   # GET /users/new
   def new
     @user = User.new
+    @menu = 3
   end
 
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @menu = 2
   end
 
   # POST /users

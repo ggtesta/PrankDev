@@ -44,7 +44,7 @@ class TransformIndexView < Effigy::Rails::View
           select(rule.css_selector).each do |node|
             if node.name = "img" then
               node.set_attribute("src", rule.text)
-            else
+            else 
               a_node = Nokogiri::XML::Node.new('img', node)
               a_node['src'] = rule.text
               
@@ -52,7 +52,7 @@ class TransformIndexView < Effigy::Rails::View
             end
           end
           
-        else # case 
+        else # case  
         
           if rule.text.empty? then              # elimina itens com texto em branco
             remove(rule.css_selector)

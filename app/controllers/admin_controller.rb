@@ -2,6 +2,7 @@ class AdminController < ApplicationController
 
   def login
     @user = User.new
+    @menu = 1
     
     if request.post?
       user = User.authenticate(params[:username], params[:password])
@@ -17,14 +18,13 @@ class AdminController < ApplicationController
 
   def logout
     session[:user_id] = nil
-    flash[:notice] = "Logged out"
+    flash[:notice] = "Logout efetuado"
     redirect_to(:controller => "admin", :action => "login" )
   end
 
   def index
     @user = User.find(session[:user_id])
+    @menu = 4
   end
   
-  def instructions
-  end
 end

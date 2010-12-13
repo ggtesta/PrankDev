@@ -4,31 +4,35 @@ class RulesController < ApplicationController
   def index
     @rules = Rule.find_all_by_page_id(params[:page_id])
     @page = Page.find(params[:page_id])
+    @menu = 2
   end
 
   # GET /rules/1
   def show
     @rule = Rule.find(params[:id])
     @page = @rule.page.id
+    @menu = 2
   end
 
   # GET /rules/new
   def new
     @rule = Rule.new
     @page = Page.find(params[:page_id])
+    @menu = 2
   end
 
   # GET /rules/1/edit
   def edit
     @rule = Rule.find(params[:id])
     @page = @rule.page.id
+    @menu = 2
  #   redirect_to(:controller => :transform, :action => :index, :page_id => @rule.page_id )
   end
 
   # POST /rules
   def create
     @rule = Rule.new(params[:rule])
-
+    
    
     if @rule.save
       flash[:notice] = "Regra com seletor '#{@rule.css_selector}' criada com sucesso."

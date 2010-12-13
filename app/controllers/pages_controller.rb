@@ -22,6 +22,7 @@ class PagesController < ApplicationController
     @directories
     @pages
     @user = User.find(session[:user_id])
+    @menu = 2
 #    @pages = Page.all
   end
 
@@ -29,11 +30,13 @@ class PagesController < ApplicationController
   def show
     @page = Page.find(params[:id])
     @rules = Rule.all
+    @menu = 2
   end
 
   # GET /pages/new
   def new
     @page = Page.new
+    @menu = 2
     
     @directories = ["root"]
     Page.find_all_by_user_id(session[:user_id]).each { |page| 
@@ -55,6 +58,7 @@ class PagesController < ApplicationController
   # GET /pages/1/edit
   def edit
     @page = Page.find(params[:id])
+    @menu = 2
   end
 
   # POST /pages
@@ -251,8 +255,12 @@ class PagesController < ApplicationController
   end
   
   def templates
+    @menu = 5
   end
   
+  def instructions
+    @menu = 4
+  end
 end
 
 
