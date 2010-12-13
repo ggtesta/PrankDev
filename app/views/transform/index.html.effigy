@@ -6,6 +6,8 @@ class TransformIndexView < Effigy::Rails::View
   #TODO: limpar arquivos temporários  
   # transformar página após cada regra nova.
   def transform
+     
+    Rails.cache.clear    
         
     file = File.open(@page.file.path)
     temp_string = ""  
@@ -36,15 +38,21 @@ class TransformIndexView < Effigy::Rails::View
         when 'clone' then 
           rule.css_selector.split(',').each { |one_selector|
             clone(normalize_rule(one_selector), rule.value, rule.text)
-            puts "bla bla bla"
           }
-        # substitui uma imagemS
+        # substitui uma imagem
         when 'image' then
           select(rule.css_selector).each do |node|
-            puts rule.text 
-            node.set_attribute("src", rule.text)
+            if node.name = "img" then
+              node.set_attribute("src", rule.text)
+            else
+              a_node = Nokogiri::XML::Node.new('img', node)
+              a_node['src'] = rule.text
+              
+              node.add_child(a_node)
+            end
           end
-        else # case
+          
+        else # case 
         
           if rule.text.empty? then              # elimina itens com texto em branco
             remove(rule.css_selector)
@@ -53,7 +61,16 @@ class TransformIndexView < Effigy::Rails::View
             select(rule.css_selector).each do |node|
 
               if node.name != "a" then
-                node.replace("<a href=\"#{rule.value}\">#{rule.text}<\/a>")
+#                node.inner_html=("<a href=\"#{rule.value}\">#{rule.text}<\/a>")
+                
+                  insert_content(node, "")
+                  a_node = Nokogiri::XML::Node.new('a', node)
+                  a_node['href'] = rule.value
+                  a_node.content = rule.text
+
+                  node.add_child(a_node)
+                  
+
               else
                 node.set_attribute("href", rule.value)
                 insert_content(node, rule.text)
@@ -64,7 +81,6 @@ class TransformIndexView < Effigy::Rails::View
 #            attr(rule.css_selector, 'href', rule.value)
           else
             text(rule.css_selector, rule.text)
-            
           end
           
       end # case       
@@ -75,30 +91,32 @@ class TransformIndexView < Effigy::Rails::View
     
   end  # transform
   
-   def yield_transform_and_output(document_or_fragment)
-      @current_context = document_or_fragment
-      yield if block_given?
-      transform
-      
-      file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
-      file_name_without_ext = file_name.split('.')[0]  # /index
-      file_extension = file_name.split('.')[1]         # html
-      
-      
-      # retorno:
-       "<script language=\"JavaScript\">
+  
+  
+  def yield_transform_and_output(document_or_fragment)
+    @current_context = document_or_fragment
+    yield if block_given?
+    transform
+    
+    file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
+    file_name_without_ext = file_name.split('.')[0]  # /index
+    file_extension = file_name.split('.')[1]         # html
+    
+    
+    # retorno:
+     "<script language=\"JavaScript\">
       <!--St
         var time = null
         function move() {
-        window.location = '#{@adress}'
+        window.location = '#{@address}'
       }
       //-->
       </script>
 
       <body onload=\"timer=setTimeout('move()',1)\"></body>
       "
-    end
-    
+  end
+     
   
   
     # método que duplica um nodo selecionado
@@ -113,7 +131,7 @@ class TransformIndexView < Effigy::Rails::View
       
       new_content = ''
       if Rule::STRUCTURAL_TAGS.include?(node.name) then
-        new_node = node.clone
+        new_node = Nokogiri::XML::Node.new(node.name, node)
         
         # insere texto dado no novo duplicado
         if (!new_text.nil?) && !(new_text == "") then
@@ -121,79 +139,49 @@ class TransformIndexView < Effigy::Rails::View
         end
        
         if (!node.child.nil?) && (!value.nil?) && (value != "") then
-          if (node.child.name != 'a') then
+#          if (node.child.name != 'a') then
             insert_content(new_node, "")
             a_node = Nokogiri::XML::Node.new('a', node)
             a_node['href'] = value
             a_node.content = new_text
 
             new_node.add_child(a_node)
-            puts "aqui"
-          
-          else
-            new_node.child.set_attribute("href", value)
-          end
+#          else
+#            new_node.child.set_attribute("href", value)
+#          end
         end
-          
+           
          node.after(new_node)
          
       elsif Rule::FORMATTING_TAGS.include?(node.name) then
+        
+        new_node = Nokogiri::XML::Node.new(node.name, node)
+        
+        if (!new_text.nil?) && !(new_text == "") then
+          insert_content(new_node, new_text)
+        end 
+        
+        if (!node.child.nil?) && (!value.nil?) && (value != "") then
+          if (node.name != 'a') then
+            insert_content(new_node, "")
+            a_node = Nokogiri::XML::Node.new('a', node)
+            a_node['href'] = value
+            a_node.content = new_text 
+
+            new_node.add_child(a_node)
+          else
+            new_node.set_attribute("href", value)
+          end
+        end
+        
+        
+         node.after(new_node)
         
       end
       
     end
   end
   
-  
-  
-  # método que duplica um nodo selecionado
-#  def clone(css_select, value, new_text)
-#
-#    select(css_select).each do |node|
-#      
-#      attributes = ''
-#      node.attributes().each { |k,v|
-#        attributes.concat(k + "=\"" + v + "\"")
-#      }
-#      
-#      new_content = ''
-#      if Rule::STRUCTURAL_TAGS.include?(node.name) then
-#        new_node = node.clone
-#        
-##        # insere texto dado no novo duplicado
-#       if (!new_text.nil?) then
-#          insert_content(new_node, new_text)
-#        end
-        
-#        node.after(new_node)
-
-        # verifica se o nodo filho é do tipo a para inserir correspondente link
-#        if !node.child.nil? then
-#          if (node.child.name != 'a') && (!value.nil?) then
-#            insert_content(new_node, "")
-#            a_node = Nokogiri::XML::Node.new('a', node)
-#            a_node['href'] = value
-#            a_node.content = new_text
-
-#            new_node.add_child(a_node)
-#            puts "aqui"
-          
-#          else
-#            new_node.child.set_attribute("href", value)
-#          end
-#        end
-        
-    
-        
-#      elsif Rule::FORMATTING_TAGS.include?(node.name) then
-#        puts "chegouuuu"
-#      end
-      
-#    end
-#  end
-
-
-        
 
 
 

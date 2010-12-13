@@ -1,15 +1,12 @@
 # app/controllers/magic_controller.rb
 class TransformController < ApplicationController
   
-  
-  # melhorar!
   def index
     @page = Page.find(params[:page_id])
     @rules = Rule.find_all_by_page_id(@page.id)
-    @adress = params[:adress]
+    @address = params[:adress]
   
     base = @page.file.path.split(@page.user_id.to_s)[0] + @page.user_id.to_s
-    puts @page.file.path
     
 #    file_name = @page.file.path.split(@page.user_id.to_s)[1]  # /index.html
 #    file_name_without_ext = file_name.split('.')[0]  # /index
@@ -25,8 +22,4 @@ class TransformController < ApplicationController
   end
   
     
-  def red(path)
-    redirect_to(path)
-  end
-  
 end

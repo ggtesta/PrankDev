@@ -35,13 +35,15 @@
              count = count + 1;
            end
          } %>
+      <% rules = 0 %>
       <% if pages.size != 0 then
-          rules = Rule.find_all_by_page_id(pages[0].id).size 
-        else rules = 0;
+           pages.each { |page|
+             rules += Rule.find_all_by_page_id(page.id).size 
+           }
         end %>
       <p>
-        Você possui <b><%= pages.size %></b> páginas, das quais <b><%= count %></b> 
-        são arquivos html editáveis, com <b><%= rules %></b> regras aplicadas sobre elas.
+        Você possui <b><%= pages.size %></b> arquivos, dos quais <b><%= count %></b> 
+        são páginas HTML editáveis, com <b><%= rules %></b> regras aplicadas sobre elas.
       </p>
         <br>
       <p>
